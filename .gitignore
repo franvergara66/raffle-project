@@ -1,0 +1,6 @@
+node_modules/
+.env
+client/raffle-ui/node_modules/
+server/raffle-draw-api/node_modules/
+dist/
+build/
