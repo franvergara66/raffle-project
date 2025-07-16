@@ -5,11 +5,11 @@ const authenticateToken = require("../middleware/authMiddleware");
 router.post("/login", adminCtrl.login);
 
 // Las siguientes rutas requieren autenticación
-router.get("/", adminCtrl.getAllAdmins);
-router.get("/:id", adminCtrl.getAdminById);
-router.post("/", adminCtrl.createAdmin);
-router.put("/:id", adminCtrl.updateAdmin);
-router.delete("/:id", adminCtrl.deleteAdmin);
+router.get("/", authenticateToken, adminCtrl.getAllAdmins);
+router.get("/:id", authenticateToken, adminCtrl.getAdminById);
+router.post("/", authenticateToken, adminCtrl.createAdmin);
+router.put("/:id", authenticateToken, adminCtrl.updateAdmin);
+router.delete("/:id", authenticateToken, adminCtrl.deleteAdmin);
 
 
 router.post("/login", adminCtrl.login);
