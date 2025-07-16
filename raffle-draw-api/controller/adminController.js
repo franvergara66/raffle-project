@@ -1,4 +1,6 @@
 const Admin = require("../models/adminModel");
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 exports.getAllAdmins = async (_req, res) => {
   const admins = await Admin.findAll();
@@ -35,7 +37,42 @@ exports.updateAdmin = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
-  // lógica de login aquí
+  const { email, password } = req.body;
+
+  try {
+    const admins = await Admin.findByEmail(email);
+
+    if (!admins || admins.length === 0) {
+      return res.status(401).json({ message: "Correo no registrado" });
+    }
+
+    const admin = admins[0];
+
+    const passwordMatch = await bcrypt.compare(password, admin.password);
+    if (!passwordMatch) {
+      return res.status(401).json({ message: "Contraseña incorrecta" });
+    }
+
+    const token = jwt.sign(
+      { id: admin.id, email: admin.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" }
+    );
+
+    return res.status(200).json({
+      message: "Login exitoso",
+      token,
+      user: {
+        id: admin.id,
+        name: admin.name,
+        email: admin.email,
+        username: admin.username,
+      },
+    });
+  } catch (error) {
+    console.error("Login error:", error);
+    return res.status(500).json({ message: "Error del servidor" });
+  }
 };
 
 

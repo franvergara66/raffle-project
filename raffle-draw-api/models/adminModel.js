@@ -1,6 +1,7 @@
 const db = require("../db/mysql");
 const bcrypt = require("bcryptjs");
 
+
 const Admin = {
   findAll: async () => {
     const [rows] = await db.query("SELECT id, name, email, username, image, created_at, updated_at FROM admins");
@@ -10,6 +11,11 @@ const Admin = {
   findById: async (id) => {
     const [rows] = await db.query("SELECT id, name, email, username, image, created_at, updated_at FROM admins WHERE id = ?", [id]);
     return rows[0];
+  },
+
+  findByEmail: async (email) => {
+    const [rows] = await db.query("SELECT * FROM admins WHERE email = ?", [email]);
+    return rows;
   },
 
   create: async ({ name, email, username, password, image }) => {
