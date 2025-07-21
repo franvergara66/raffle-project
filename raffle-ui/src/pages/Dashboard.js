@@ -83,14 +83,21 @@ function Dashboard() {
       <div className="row">
         {boxes.map((b) => (
           <div key={b.label} className="col-lg-3 col-sm-6 mb-4">
-            <div className={`small-box ${b.color}`}>
-              <div className="inner">
-                <h3>{b.value}</h3>
-                <p>{b.label}</p>
+            <div className={`widget-seven ${b.color}`}>
+              <div className="widget-seven__content">
+                <span className="widget-seven__content-icon">
+                  <span className="icon">
+                    <i className={`fas ${b.icon}`}></i>
+                  </span>
+                </span>
+                <div className="widget-seven__description">
+                  <p className="widget-seven__content-title">{b.label}</p>
+                  <h3 className="widget-seven__content-amount">{b.value}</h3>
+                </div>
               </div>
-              <div className="icon">
-                <i className={`fas ${b.icon}`}></i>
-              </div>
+              <span className="widget-seven__arrow">
+                <i className="fas fa-chevron-right"></i>
+              </span>
             </div>
           </div>
         ))}
