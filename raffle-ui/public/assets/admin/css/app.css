@@ -1,0 +1,9 @@
+/* Global admin styles */
+body {
+  background-color: #f4f6f9;
+}
+
+.content-wrapper {
+  background-color: #f4f6f9;
+  min-height: 100vh;
+}
