@@ -1,3 +1,37 @@
+
+/* Adapted global styles */
+@import url(./reset.css);
+
+.text--shadow {
+  text-shadow: 1px 2px 5px rgba(0,0,0,0.35);
+}
+.box--shadow1 {
+  box-shadow: 0px 5px 26px -5px #cdd4e7 !important;
+}
+.b-radius--3 {
+  border-radius:3px !important;
+}
+
+.text--primary { color: #4634ff !important; }
+.bg--primary { background-color: #4634ff !important; color: #fff; }
+
+.btn--primary {
+  background-color:#4634ff !important;
+  border-color:#4634ff !important;
+  color:#fff !important;
+}
+.btn--primary:hover {
+  background-color:#1801ff !important;
+}
+
+.card {
+  border:none;
+  box-shadow:0 0.75rem 1.5rem rgba(18,38,63,0.03);
+  border-radius:5px;
+}
+
+/* More styles can be imported from the original stylesheet if needed */
+=======
 /* Core admin styles inspired by the original theme */
 @import url(./reset.css);
 
@@ -90,4 +124,5 @@ input:not([type='radio']), textarea { padding:10px 20px; border-radius:5px; back
 /* Tables */
 .table th{font-size:0.75rem;text-align:center;padding:15px 25px;white-space:nowrap;}
 .table td{font-size:0.8125rem;color:#5b6e88;text-align:center;font-weight:500;padding:15px 25px;vertical-align:middle;white-space:nowrap;}
+
 
