@@ -4,12 +4,17 @@ const bcrypt = require("bcryptjs");
 
 const Admin = {
   findAll: async () => {
-    const [rows] = await db.query("SELECT id, name, email, username, image, created_at, updated_at FROM admins");
+    const [rows] = await db.query(
+      "SELECT id, name, email, username, image, role, created_at, updated_at FROM admins"
+    );
     return rows;
   },
 
   findById: async (id) => {
-    const [rows] = await db.query("SELECT id, name, email, username, image, created_at, updated_at FROM admins WHERE id = ?", [id]);
+    const [rows] = await db.query(
+      "SELECT id, name, email, username, image, role, created_at, updated_at FROM admins WHERE id = ?",
+      [id]
+    );
     return rows[0];
   },
 
@@ -18,11 +23,11 @@ const Admin = {
     return rows;
   },
 
-  create: async ({ name, email, username, password, image }) => {
+  create: async ({ name, email, username, password, image, role = "editor" }) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const [result] = await db.query(
-      "INSERT INTO admins (name, email, username, password, image) VALUES (?, ?, ?, ?, ?)",
-      [name, email, username, hashedPassword, image || null]
+      "INSERT INTO admins (name, email, username, password, image, role) VALUES (?, ?, ?, ?, ?, ?)",
+      [name, email, username, hashedPassword, image || null, role]
     );
     return { id: result.insertId };
   },

@@ -14,17 +14,25 @@ exports.getAdminById = async (req, res) => {
 };
 
 exports.createAdmin = async (req, res) => {
-  const { name, email, username, password, image } = req.body;
+  const { name, email, username, password, image, role = "editor" } = req.body;
+
   if (!name || !email || !username || !password) {
     return res.status(400).json({ message: "Faltan campos obligatorios" });
   }
+
+  const allowedRoles = ["editor", "superadmin"];
+  if (!allowedRoles.includes(role)) {
+    return res.status(400).json({ message: "Rol inválido. Debe ser 'editor' o 'superadmin'" });
+  }
+
   try {
-    const newAdmin = await Admin.create({ name, email, username, password, image });
+    const newAdmin = await Admin.create({ name, email, username, password, image, role });
     res.status(201).json({ message: "Admin creado", id: newAdmin.id });
   } catch (err) {
     res.status(500).json({ message: "Error al crear admin", error: err.message });
   }
 };
+  
 
 exports.updateAdmin = async (req, res) => {
   const { name, email, username, image } = req.body;
