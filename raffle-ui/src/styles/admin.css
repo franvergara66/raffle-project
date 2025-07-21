@@ -93,3 +93,7 @@ input:not([type='radio']), textarea { padding:10px 20px; border-radius:5px; back
 .table td{font-size:0.8125rem;color:#5b6e88;text-align:center;font-weight:500;padding:15px 25px;vertical-align:middle;white-space:nowrap;}
 
 
+
+/* Sidebar */
+.sidebar { background-color: #071251; color: #fff; }
+.sidebar-item:hover { background-color: #1e2a78; }
