@@ -28,7 +28,7 @@ const Sidebar = () => {
   return (
     <div className="bg-[#0c1245] text-white h-screen w-64 fixed flex flex-col p-4 shadow-lg">
       <div className="flex items-center gap-3 mb-8 text-2xl font-bold">
-        <img src="/logo.png" alt="Logo" className="h-10" />
+        <img src="/assets/images/logoIcon/logo.png" alt="Logo" className="h-10" />
         LottoLab
       </div>
 
