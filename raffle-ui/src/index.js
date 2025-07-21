@@ -17,7 +17,11 @@ import './App.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-
+// Load styles located in the public assets folder
+const publicStyle = document.createElement('link');
+publicStyle.rel = 'stylesheet';
+publicStyle.href = `${process.env.PUBLIC_URL}/assets/admin/css/app.css`;
+document.head.appendChild(publicStyle);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
