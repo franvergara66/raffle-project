@@ -1,6 +1,7 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import AdminNotifications from '../components/AdminNotifications';
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -52,6 +53,7 @@ function Dashboard() {
       <div className="content-wrapper p-4">
         <h2>Bienvenido, {user?.name} 👋</h2>
         <p>Acá puedes agregar tus gráficos, tablas, etc.</p>
+        <AdminNotifications />
       </div>
     </div>
   );
