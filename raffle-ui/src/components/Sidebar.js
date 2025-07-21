@@ -35,12 +35,86 @@ const Sidebar = () => {
       <nav className="space-y-2 text-sm">
         <SidebarItem icon={<FaTachometerAlt />} label="Dashboard" onClick={() => handleNavigate('/dashboard')} />
 
-        <SidebarItem icon={<FaTicketAlt />} label="Manage Lottery" onClick={() => toggleMenu('lottery')} dropdown={openMenu === 'lottery'} />
-        <SidebarItem icon={<FaUsers />} label="Manage Users" onClick={() => toggleMenu('users')} dropdown={openMenu === 'users'} badge="!" />
-        <SidebarItem icon={<FaMoneyBillWave />} label="Deposits" badge="!" />
-        <SidebarItem icon={<FaMoneyBillWave />} label="Withdrawals" badge="!" />
-        <SidebarItem icon={<FaLifeRing />} label="Support Ticket" badge="!" />
-        <SidebarItem icon={<FaChartBar />} label="Report" />
+        <SidebarItem
+          icon={<FaTicketAlt />}
+          label="Manage Lottery"
+          onClick={() => toggleMenu('lottery')}
+          dropdown={openMenu === 'lottery'}
+          subItems={['Lotteries', 'Lottery Phases', 'Manual Draw']}
+        />
+        <SidebarItem
+          icon={<FaUsers />}
+          label="Manage Users"
+          onClick={() => toggleMenu('users')}
+          dropdown={openMenu === 'users'}
+          badge="!"
+          subItems={[
+            'Active Users',
+            'Banned Users',
+            'Email Unverified',
+            'Mobile Unverified',
+            'KYC Unverified',
+            'KYC Pending',
+            'With Balance',
+            'All Users',
+            'Send Notification',
+          ]}
+        />
+        <SidebarItem
+          icon={<FaMoneyBillWave />}
+          label="Deposits"
+          onClick={() => toggleMenu('deposits')}
+          dropdown={openMenu === 'deposits'}
+          badge="!"
+          subItems={[
+            'Pending Deposits',
+            'Approved Deposits',
+            'Successful Deposits',
+            'Rejected Deposits',
+            'Initiated Deposits',
+            'All Deposits',
+          ]}
+        />
+        <SidebarItem
+          icon={<FaMoneyBillWave />}
+          label="Withdrawals"
+          onClick={() => toggleMenu('withdrawals')}
+          dropdown={openMenu === 'withdrawals'}
+          badge="!"
+          subItems={[
+            'Pending Withdrawals',
+            'Approved Withdrawals',
+            'Rejected Withdrawals',
+            'All Withdrawals',
+          ]}
+        />
+        <SidebarItem
+          icon={<FaLifeRing />}
+          label="Support Ticket"
+          onClick={() => toggleMenu('support')}
+          dropdown={openMenu === 'support'}
+          badge="!"
+          subItems={[
+            'Pending Ticket',
+            'Closed Ticket',
+            'Answered Ticket',
+            'All Ticket',
+          ]}
+        />
+        <SidebarItem
+          icon={<FaChartBar />}
+          label="Report"
+          onClick={() => toggleMenu('report')}
+          dropdown={openMenu === 'report'}
+          subItems={[
+            'Transaction History',
+            'Sold Ticket History',
+            'Winner History',
+            'Commission History',
+            'Login History',
+            'Notification History',
+          ]}
+        />
         <SidebarItem icon={<FaEnvelope />} label="Subscribers" />
         <SidebarItem icon={<FaCogs />} label="System Setting" />
         <SidebarItem icon={<FaTools />} label="Extra" />
@@ -52,7 +126,7 @@ const Sidebar = () => {
   );
 };
 
-const SidebarItem = ({ icon, label, onClick, badge, dropdown }) => {
+const SidebarItem = ({ icon, label, onClick, badge, dropdown, subItems = [] }) => {
   return (
     <div>
       <div
@@ -73,10 +147,13 @@ const SidebarItem = ({ icon, label, onClick, badge, dropdown }) => {
         </div>
       </div>
 
-      {dropdown && (
+      {dropdown && subItems.length > 0 && (
         <div className="ml-10 mt-1 space-y-1 text-gray-300">
-          <div className="hover:text-white cursor-pointer">Sub Opción 1</div>
-          <div className="hover:text-white cursor-pointer">Sub Opción 2</div>
+          {subItems.map((item) => (
+            <div key={item} className="hover:text-white cursor-pointer">
+              {item}
+            </div>
+          ))}
         </div>
       )}
     </div>
