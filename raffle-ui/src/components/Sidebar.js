@@ -26,7 +26,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="bg-[#0c1245] text-white h-screen w-64 fixed flex flex-col p-4 shadow-lg">
+    <div className="sidebar h-screen w-64 fixed flex flex-col p-4 shadow-lg">
       <div className="flex items-center gap-3 mb-8 text-2xl font-bold">
         <img src="/assets/images/logoIcon/logo.png" alt="Logo" className="h-10" />
         LottoLab
@@ -56,7 +56,7 @@ const SidebarItem = ({ icon, label, onClick, badge, dropdown }) => {
   return (
     <div>
       <div
-        className="flex justify-between items-center px-3 py-2 rounded-md cursor-pointer hover:bg-[#1e2a78] transition-colors"
+        className="sidebar-item flex justify-between items-center px-3 py-2 rounded-md cursor-pointer transition-colors"
         onClick={onClick}
       >
         <div className="flex items-center gap-3">
