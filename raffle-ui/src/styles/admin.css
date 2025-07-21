@@ -1,3 +1,4 @@
+
 /* Adapted global styles */
 @import url(./reset.css);
 
@@ -30,3 +31,98 @@
 }
 
 /* More styles can be imported from the original stylesheet if needed */
+=======
+/* Core admin styles inspired by the original theme */
+@import url(./reset.css);
+
+/* Shadows */
+.text--shadow { text-shadow: 1px 2px 5px rgba(0,0,0,0.35); }
+.box--shadow1 { box-shadow: 0px 5px 26px -5px #cdd4e7 !important; }
+.box--shadow2 { box-shadow: 0 4px 10px #38414a0f !important; }
+.box--shadow3 { box-shadow: 0 3px 5px 0 rgba(18,38,63,0.2) !important; }
+
+/* Border radius helpers */
+.b-radius--3  { border-radius: 3px !important; }
+.b-radius--4  { border-radius: 4px !important; }
+.b-radius--5  { border-radius: 5px !important; }
+.b-radius--6  { border-radius: 6px !important; }
+.b-radius--7  { border-radius: 7px !important; }
+.b-radius--8  { border-radius: 8px !important; }
+.b-radius--9  { border-radius: 9px !important; }
+.b-radius--10 { border-radius: 10px !important; }
+.b-radius--rounded { border-radius: 50% !important; }
+.b-radius--capsule { border-radius: 999px !important; }
+
+/* Typography */
+h1,h2,h3,h4,h5,h6{font-weight:500;color:#34495e;margin:0;line-height:1.4;}
+h1{font-size:2.25rem;} h2{font-size:2rem;} h3{font-size:1.375rem;}
+h4{font-size:1.25rem;} h5{font-size:1.125rem;} h6{font-size:1rem;}
+p{font-size:0.875rem;line-height:1.7;font-weight:400;}
+
+/* Color utilities */
+.text--primary   { color:#4634ff !important; }
+.text--secondary { color:#868e96 !important; }
+.text--success   { color:#28c76f !important; }
+.text--danger    { color:#eb2222 !important; }
+.text--warning   { color:#ff9f43 !important; }
+.text--info      { color:#1e9ff2 !important; }
+.text--dark      { color:#10163a !important; }
+.text--white     { color:#ffffff !important; }
+
+/* Background colors */
+.bg--primary   { background-color:#4634ff !important; color:#fff; }
+.bg--secondary { background-color:#868e96 !important; color:#fff; }
+.bg--success   { background-color:#28c76f !important; color:#fff; }
+.bg--danger    { background-color:#eb2222 !important; color:#fff; }
+.bg--warning   { background-color:#ff9f43 !important; color:#fff; }
+.bg--info      { background-color:#1e9ff2 !important; color:#fff; }
+.bg--dark      { background-color:#071251 !important; color:#fff; }
+.bg--white     { background-color:#ffffff !important; color:inherit; }
+
+/* Buttons */
+.btn--primary,
+.btn--secondary,
+.btn--success,
+.btn--danger,
+.btn--warning,
+.btn--info,
+.btn--dark {
+  --btn-color:#fff;
+  border:1px solid transparent;
+  border-radius:3.2px;
+  color:var(--btn-color) !important;
+}
+
+.btn--primary   { background-color:#4634ff !important; border-color:#4634ff !important; }
+.btn--secondary { background-color:#868e96 !important; border-color:#868e96 !important; }
+.btn--success   { background-color:#28c76f !important; border-color:#28c76f !important; }
+.btn--danger    { background-color:#eb2222 !important; border-color:#eb2222 !important; }
+.btn--warning   { background-color:#ff9f43 !important; border-color:#ff9f43 !important; }
+.btn--info      { background-color:#1e9ff2 !important; border-color:#1e9ff2 !important; }
+.btn--dark      { background-color:#10163a !important; border-color:#10163a !important; }
+
+.btn--primary:hover   { background-color:#1801ff !important; }
+.btn--secondary:hover { background-color:#6c757d !important; }
+.btn--success:hover   { background-color:#1f9d57 !important; }
+.btn--danger:hover    { background-color:#c81212 !important; }
+.btn--warning:hover   { background-color:#ff8510 !important; }
+.btn--info:hover      { background-color:#0c84d1 !important; }
+.btn--dark:hover      { background-color:#050712 !important; }
+
+/* Card */
+.card {
+  border: none;
+  box-shadow: 0 0.75rem 1.5rem rgba(18, 38, 63, 0.03);
+  border-radius: 5px;
+}
+
+/* Form controls */
+label { font-size:0.85rem; font-weight:500; margin-bottom:5px; }
+.form-group { margin-bottom:15px; }
+input:not([type='radio']), textarea { padding:10px 20px; border-radius:5px; background-color:transparent; font-size:0.875rem !important; }
+
+/* Tables */
+.table th{font-size:0.75rem;text-align:center;padding:15px 25px;white-space:nowrap;}
+.table td{font-size:0.8125rem;color:#5b6e88;text-align:center;font-weight:500;padding:15px 25px;vertical-align:middle;white-space:nowrap;}
+
+
