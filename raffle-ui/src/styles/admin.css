@@ -169,3 +169,12 @@ input:not([type='radio']), textarea { padding:10px 20px; border-radius:5px; back
 .sidebar__menu .sidebar-submenu .sidebar-menu-item > button {
   padding: 10px 20px 10px 35px;
 }
+
+/* Ajustar la zona del logo para que coincida con la altura de la barra de navegación */
+.sidebar__logo {
+  padding: 15px 10px;
+}
+
+.sidebar__logo .sidebar__main-logo img {
+  max-height: 35px;
+}
