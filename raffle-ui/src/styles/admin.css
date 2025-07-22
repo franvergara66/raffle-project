@@ -181,3 +181,11 @@ input:not([type='radio']), textarea { padding:10px 20px; border-radius:5px; back
 .sidebar__logo .sidebar__main-logo img {
   max-height: 40px;
 }
+
+/* Align the navbar with the sidebar logo */
+.navbar-wrapper {
+  height: 60px;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+}
