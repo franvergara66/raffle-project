@@ -37,14 +37,19 @@ p{font-size:0.875rem;line-height:1.7;font-weight:400;}
 .text--white     { color:#ffffff !important; }
 
 /* Background colors */
-.bg--primary   { background-color:#4634ff !important; color:#fff; }
-.bg--secondary { background-color:#868e96 !important; color:#fff; }
-.bg--success   { background-color:#28c76f !important; color:#fff; }
-.bg--danger    { background-color:#eb2222 !important; color:#fff; }
-.bg--warning   { background-color:#ff9f43 !important; color:#fff; }
-.bg--info      { background-color:#1e9ff2 !important; color:#fff; }
-.bg--dark      { background-color:#071251 !important; color:#fff; }
-.bg--white     { background-color:#ffffff !important; color:inherit; }
+.bg--primary   { --color:#4634ff; background-color:var(--color) !important; color:#fff; }
+.bg--secondary { --color:#868e96; background-color:var(--color) !important; color:#fff; }
+.bg--success   { --color:#28c76f; background-color:var(--color) !important; color:#fff; }
+.bg--danger    { --color:#eb2222; background-color:var(--color) !important; color:#fff; }
+.bg--warning   { --color:#ff9f43; background-color:var(--color) !important; color:#fff; }
+.bg--info      { --color:#1e9ff2; background-color:var(--color) !important; color:#fff; }
+.bg--dark      { --color:#071251; background-color:var(--color) !important; color:#fff; }
+.bg--white     { --color:#ffffff; background-color:var(--color) !important; color:inherit; }
+.bg--indigo    { --color:#6610f2; background-color:var(--color) !important; color:#fff; }
+.bg--teal      { --color:#20c997; background-color:var(--color) !important; color:#fff; }
+.bg--pink      { --color:#d63384; background-color:var(--color) !important; color:#fff; }
+
+*[class*='bg'] { color:#ffffff; }
 
 /* Buttons */
 .btn--primary,
@@ -100,12 +105,17 @@ input:not([type='radio']), textarea { padding:10px 20px; border-radius:5px; back
 
 /* Dashboard Widget Seven */
 .widget-seven {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 20px;
+  border: 1px solid var(--color);
   border-radius: 5px;
-  color: #fff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.04),
+              0 4px 8px rgba(0, 0, 0, 0.06);
+  background-color: #fff !important;
+  padding: 20px 18px;
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+  height: 100%;
+  align-items: center;
 }
 
 .widget-seven__content {

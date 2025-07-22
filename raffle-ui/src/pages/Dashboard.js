@@ -59,14 +59,14 @@ function Dashboard() {
   }, []);
 
   const boxes = [
-    { color: 'bg-primary', icon: 'fa-users', label: 'Total Users', value: stats.totalUsers },
-    { color: 'bg-success', icon: 'fa-user-check', label: 'Verified Users', value: stats.verifiedUsers },
-    { color: 'bg-warning', icon: 'fa-envelope', label: 'Email Unverified', value: stats.emailUnverifiedUsers },
-    { color: 'bg-danger', icon: 'fa-sms', label: 'SMS Unverified', value: stats.smsUnverifiedUsers },
-    { color: 'bg-info', icon: 'fa-ticket-alt', label: 'Sell Ticket', value: stats.totalSellTicket },
-    { color: 'bg-indigo', icon: 'fa-money-bill', label: 'Sell Amount', value: stats.totalSellAmount },
-    { color: 'bg-teal', icon: 'fa-trophy', label: 'Winners', value: stats.totalWinner },
-    { color: 'bg-pink', icon: 'fa-gift', label: 'Win Amount', value: stats.totalWinAmount },
+    { color: 'bg--primary', icon: 'fa-users', label: 'Total Users', value: stats.totalUsers },
+    { color: 'bg--success', icon: 'fa-user-check', label: 'Verified Users', value: stats.verifiedUsers },
+    { color: 'bg--warning', icon: 'fa-envelope', label: 'Email Unverified', value: stats.emailUnverifiedUsers },
+    { color: 'bg--danger', icon: 'fa-sms', label: 'SMS Unverified', value: stats.smsUnverifiedUsers },
+    { color: 'bg--info', icon: 'fa-ticket-alt', label: 'Sell Ticket', value: stats.totalSellTicket },
+    { color: 'bg--indigo', icon: 'fa-money-bill', label: 'Sell Amount', value: stats.totalSellAmount },
+    { color: 'bg--teal', icon: 'fa-trophy', label: 'Winners', value: stats.totalWinner },
+    { color: 'bg--pink', icon: 'fa-gift', label: 'Win Amount', value: stats.totalWinAmount },
   ];
 
   return (
