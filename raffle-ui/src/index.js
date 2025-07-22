@@ -15,6 +15,7 @@ import './index.css';
 import './styles/admin.css';
 import './styles/content.css';
 import './styles/base.css';
+import './styles/app.css';
 import './App.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -28,7 +29,6 @@ const styleHrefs = [
   `${process.env.PUBLIC_URL}/assets/admin/css/line-awesome.min.css`,
   'https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css',
   `${process.env.PUBLIC_URL}/assets/admin/css/vendor/select2.min.css`,
-  `${process.env.PUBLIC_URL}/assets/admin/css/app.css`,
   `${process.env.PUBLIC_URL}/assets/global/css/iziToast.min.css`,
   `${process.env.PUBLIC_URL}/assets/global/css/iziToast_custom.css`,
   `${process.env.PUBLIC_URL}/assets/admin/css/reset.css`,
