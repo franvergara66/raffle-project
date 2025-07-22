@@ -1,17 +1,110 @@
 import React, { useState } from 'react';
-import {
-  FaTachometerAlt,
-  FaUsers,
-  FaMoneyBillWave,
-  FaTicketAlt,
-  FaLifeRing,
-  FaChartBar,
-  FaEnvelope,
-  FaCogs,
-  FaTools,
-  FaChevronDown,
-} from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+
+const menuData = [
+  {
+    label: 'Dashboard',
+    icon: 'las la-home',
+    to: '/dashboard',
+  },
+  {
+    label: 'Manage Lottery',
+    icon: 'las la-ticket-alt',
+    subItems: [
+      { label: 'Lotteries', to: '/lottery' },
+      { label: 'Lottery Phases', to: '/lottery/phases' },
+      { label: 'Manual Draw', to: '/lottery/draw' },
+    ],
+  },
+  {
+    label: 'Manage Users',
+    icon: 'las la-users',
+    badge: true,
+    subItems: [
+      { label: 'Active Users', to: '/users/active' },
+      { label: 'Banned Users', to: '/users/banned', badge: 1 },
+      { label: 'Email Unverified', to: '/users/email-unverified', badge: 90 },
+      { label: 'Mobile Unverified', to: '/users/mobile-unverified', badge: 2 },
+      { label: 'KYC Unverified', to: '/users/kyc-unverified', badge: 1877 },
+      { label: 'KYC Pending', to: '/users/kyc-pending', badge: 337 },
+      { label: 'With Balance', to: '/users/with-balance' },
+      { label: 'All Users', to: '/users' },
+      { label: 'Send Notification', to: '/users/send-notification' },
+    ],
+  },
+  {
+    label: 'Deposits',
+    icon: 'las la-file-invoice-dollar',
+    badge: true,
+    subItems: [
+      { label: 'Pending Deposits', to: '/deposit/pending', badge: 84 },
+      { label: 'Approved Deposits', to: '/deposit/approved' },
+      { label: 'Successful Deposits', to: '/deposit/successful' },
+      { label: 'Rejected Deposits', to: '/deposit/rejected' },
+      { label: 'Initiated Deposits', to: '/deposit/initiated' },
+      { label: 'All Deposits', to: '/deposit/all' },
+    ],
+  },
+  {
+    label: 'Withdrawals',
+    icon: 'la la-bank',
+    badge: true,
+    subItems: [
+      { label: 'Pending Withdrawals', to: '/withdraw/pending', badge: 17 },
+      { label: 'Approved Withdrawals', to: '/withdraw/approved' },
+      { label: 'Rejected Withdrawals', to: '/withdraw/rejected' },
+      { label: 'All Withdrawals', to: '/withdraw/all' },
+    ],
+  },
+  {
+    label: 'Support Ticket',
+    icon: 'la la-ticket',
+    badge: true,
+    subItems: [
+      { label: 'Pending Ticket', to: '/ticket/pending', badge: 50 },
+      { label: 'Closed Ticket', to: '/ticket/closed' },
+      { label: 'Answered Ticket', to: '/ticket/answered' },
+      { label: 'All Ticket', to: '/ticket' },
+    ],
+  },
+  {
+    label: 'Report',
+    icon: 'la la-list',
+    subItems: [
+      { label: 'Transaction History', to: '/report/transaction' },
+      { label: 'Sold Ticket History', to: '/report/lottery/tickets' },
+      { label: 'Winner History', to: '/report/winners' },
+      { label: 'Commission History', to: '/report/commissions' },
+      { label: 'Login History', to: '/report/login/history' },
+      { label: 'Notification History', to: '/report/notification/history' },
+    ],
+  },
+  {
+    label: 'Subscribers',
+    icon: 'las la-thumbs-up',
+    to: '/subscriber',
+  },
+  {
+    label: 'System Setting',
+    icon: 'las la-life-ring',
+    to: '/system-setting',
+  },
+  {
+    label: 'Extra',
+    icon: 'la la-server',
+    subItems: [
+      { label: 'Application', to: '/system/info' },
+      { label: 'Server', to: '/system/server-info' },
+      { label: 'Cache', to: '/system/optimize' },
+      { label: 'Update', to: '/system/system-update' },
+    ],
+  },
+  {
+    label: 'Report & Request',
+    icon: 'las la-bug',
+    to: '/request-report',
+  },
+];
 
 const Sidebar = () => {
   const [openMenu, setOpenMenu] = useState('');
@@ -22,141 +115,69 @@ const Sidebar = () => {
   };
 
   const handleNavigate = (path) => {
-    navigate(path);
+    if (path) {
+      navigate(path);
+    }
   };
 
   return (
-    <div className="sidebar h-screen w-64 fixed flex flex-col p-4 shadow-lg">
-      <div className="flex items-center gap-3 mb-8 text-2xl font-bold">
-        <img src="/assets/images/logoIcon/logo.png" alt="Logo" className="h-10" />
-        LottoLab
+    <div className="sidebar">
+      <div id="sidebar__menuWrapper" className="sidebar__menu-wrapper">
+        <ul className="sidebar__menu">
+          {menuData.map((item, idx) => (
+            <MenuItem
+              key={idx}
+              item={item}
+              open={openMenu === idx}
+              onToggle={() => toggleMenu(idx)}
+              onNavigate={handleNavigate}
+            />
+          ))}
+        </ul>
       </div>
-
-      <nav className="space-y-2 text-sm">
-        <SidebarItem icon={<FaTachometerAlt />} label="Dashboard" onClick={() => handleNavigate('/dashboard')} />
-
-        <SidebarItem
-          icon={<FaTicketAlt />}
-          label="Manage Lottery"
-          onClick={() => toggleMenu('lottery')}
-          dropdown={openMenu === 'lottery'}
-          subItems={['Lotteries', 'Lottery Phases', 'Manual Draw']}
-        />
-        <SidebarItem
-          icon={<FaUsers />}
-          label="Manage Users"
-          onClick={() => toggleMenu('users')}
-          dropdown={openMenu === 'users'}
-          badge="!"
-          subItems={[
-            'Active Users',
-            'Banned Users',
-            'Email Unverified',
-            'Mobile Unverified',
-            'KYC Unverified',
-            'KYC Pending',
-            'With Balance',
-            'All Users',
-            'Send Notification',
-          ]}
-        />
-        <SidebarItem
-          icon={<FaMoneyBillWave />}
-          label="Deposits"
-          onClick={() => toggleMenu('deposits')}
-          dropdown={openMenu === 'deposits'}
-          badge="!"
-          subItems={[
-            'Pending Deposits',
-            'Approved Deposits',
-            'Successful Deposits',
-            'Rejected Deposits',
-            'Initiated Deposits',
-            'All Deposits',
-          ]}
-        />
-        <SidebarItem
-          icon={<FaMoneyBillWave />}
-          label="Withdrawals"
-          onClick={() => toggleMenu('withdrawals')}
-          dropdown={openMenu === 'withdrawals'}
-          badge="!"
-          subItems={[
-            'Pending Withdrawals',
-            'Approved Withdrawals',
-            'Rejected Withdrawals',
-            'All Withdrawals',
-          ]}
-        />
-        <SidebarItem
-          icon={<FaLifeRing />}
-          label="Support Ticket"
-          onClick={() => toggleMenu('support')}
-          dropdown={openMenu === 'support'}
-          badge="!"
-          subItems={[
-            'Pending Ticket',
-            'Closed Ticket',
-            'Answered Ticket',
-            'All Ticket',
-          ]}
-        />
-        <SidebarItem
-          icon={<FaChartBar />}
-          label="Report"
-          onClick={() => toggleMenu('report')}
-          dropdown={openMenu === 'report'}
-          subItems={[
-            'Transaction History',
-            'Sold Ticket History',
-            'Winner History',
-            'Commission History',
-            'Login History',
-            'Notification History',
-          ]}
-        />
-        <SidebarItem icon={<FaEnvelope />} label="Subscribers" />
-        <SidebarItem icon={<FaCogs />} label="System Setting" />
-        <SidebarItem icon={<FaTools />} label="Extra" />
-        <SidebarItem icon={<FaChartBar />} label="Report & Request" />
-      </nav>
-
-      <div className="mt-auto text-xs text-gray-400">LOTTOLAB V3.1</div>
     </div>
   );
 };
 
-const SidebarItem = ({ icon, label, onClick, badge, dropdown, subItems = [] }) => {
-  return (
-    <div>
-      <div
-        className="sidebar-item flex justify-between items-center px-3 py-2 rounded-md cursor-pointer transition-colors"
-        onClick={onClick}
-      >
-        <div className="flex items-center gap-3">
-          {icon}
-          <span>{label}</span>
-        </div>
-        <div className="flex items-center gap-1">
-          {badge && (
-            <span className="bg-orange-500 text-white text-xs px-1.5 py-0.5 rounded-full">
-              {badge}
+const MenuItem = ({ item, open, onToggle, onNavigate }) => {
+  if (item.subItems) {
+    return (
+      <li className={`sidebar-menu-item sidebar-dropdown ${open ? 'open' : ''}`}>
+        <a href="javascript:void(0)" onClick={onToggle} className={open ? 'side-menu--open' : ''}>
+          <i className={`menu-icon ${item.icon}`}></i>
+          <span className="menu-title">{item.label}</span>
+          {item.badge && (
+            <span className="menu-badge menu-badge-level-one bg--warning ms-auto">
+              <i className="fas fa-exclamation"></i>
             </span>
           )}
-          {onClick && <FaChevronDown className={`transition-transform ${dropdown ? 'rotate-180' : ''}`} />}
+        </a>
+        <div className={`sidebar-submenu ${open ? 'sidebar-submenu__open' : ''}`}>
+          <ul>
+            {item.subItems.map((sub, idx) => (
+              <li key={idx} className="sidebar-menu-item">
+                <a onClick={() => onNavigate(sub.to)} className="nav-link">
+                  <i className="menu-icon las la-dot-circle"></i>
+                  <span className="menu-title">{sub.label}</span>
+                  {sub.badge && (
+                    <span className="menu-badge bg--info ms-auto">{sub.badge}</span>
+                  )}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
-      </div>
+      </li>
+    );
+  }
 
-      {dropdown && subItems.length > 0 && (
-        <div className="ml-10 mt-1 space-y-1 text-gray-300">
-          {subItems.map((item) => (
-            <div key={item} className="hover:text-white cursor-pointer">
-              {item}
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+  return (
+    <li className="sidebar-menu-item">
+      <a onClick={() => onNavigate(item.to)} className="nav-link">
+        <i className={`menu-icon ${item.icon}`}></i>
+        <span className="menu-title">{item.label}</span>
+      </a>
+    </li>
   );
 };
 
