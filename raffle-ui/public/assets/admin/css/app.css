@@ -5180,7 +5180,7 @@ th.w-85 {
     background: #ffffff;
     padding: 15px 30px;
     margin-left: 250px;
-    border-bottom: 1px solid #dee4ec;
+    border-bottom: 0px solid #dee4ec;
     box-shadow: 5px 7px 26px -5px #cdd4e7;
     display: -ms-flexbox;
     display: flex;
