@@ -122,6 +122,11 @@ const Sidebar = () => {
 
   return (
     <div className="sidebar">
+      <div className="sidebar__logo">
+        <div className="sidebar__main-logo">
+          <img src="/assets/images/logoIcon/logo.png" alt="Logo" />
+        </div>
+      </div>
       <div id="sidebar__menuWrapper" className="sidebar__menu-wrapper">
         <ul className="sidebar__menu">
           {menuData.map((item, idx) => (
