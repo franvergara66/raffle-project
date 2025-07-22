@@ -1,108 +1,108 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-const menuItems = [
+const menuData = [
   {
     label: 'Dashboard',
     icon: 'las la-home',
-    path: '/dashboard',
+    to: '/dashboard',
   },
   {
     label: 'Manage Lottery',
     icon: 'las la-ticket-alt',
     subItems: [
-      { label: 'Lotteries', path: '/lottery' },
-      { label: 'Lottery Phases', path: '/lottery/phases' },
-      { label: 'Manual Draw', path: '/lottery/draw' },
+      { label: 'Lotteries', to: '/lottery' },
+      { label: 'Lottery Phases', to: '/lottery/phases' },
+      { label: 'Manual Draw', to: '/lottery/draw' },
     ],
   },
   {
     label: 'Manage Users',
     icon: 'las la-users',
-    badge: '!',
+    badge: true,
     subItems: [
-      { label: 'Active Users', path: '/users/active' },
-      { label: 'Banned Users', path: '/users/banned', badge: 1 },
-      { label: 'Email Unverified', path: '/users/email-unverified', badge: 90 },
-      { label: 'Mobile Unverified', path: '/users/mobile-unverified', badge: 2 },
-      { label: 'KYC Unverified', path: '/users/kyc-unverified', badge: 1877 },
-      { label: 'KYC Pending', path: '/users/kyc-pending', badge: 337 },
-      { label: 'With Balance', path: '/users/with-balance' },
-      { label: 'All Users', path: '/users' },
-      { label: 'Send Notification', path: '/users/send-notification' },
+      { label: 'Active Users', to: '/users/active' },
+      { label: 'Banned Users', to: '/users/banned', badge: 1 },
+      { label: 'Email Unverified', to: '/users/email-unverified', badge: 90 },
+      { label: 'Mobile Unverified', to: '/users/mobile-unverified', badge: 2 },
+      { label: 'KYC Unverified', to: '/users/kyc-unverified', badge: 1877 },
+      { label: 'KYC Pending', to: '/users/kyc-pending', badge: 337 },
+      { label: 'With Balance', to: '/users/with-balance' },
+      { label: 'All Users', to: '/users' },
+      { label: 'Send Notification', to: '/users/send-notification' },
     ],
   },
   {
     label: 'Deposits',
     icon: 'las la-file-invoice-dollar',
-    badge: '!',
+    badge: true,
     subItems: [
-      { label: 'Pending Deposits', path: '/deposit/pending', badge: 84 },
-      { label: 'Approved Deposits', path: '/deposit/approved' },
-      { label: 'Successful Deposits', path: '/deposit/successful' },
-      { label: 'Rejected Deposits', path: '/deposit/rejected' },
-      { label: 'Initiated Deposits', path: '/deposit/initiated' },
-      { label: 'All Deposits', path: '/deposit/all' },
+      { label: 'Pending Deposits', to: '/deposit/pending', badge: 84 },
+      { label: 'Approved Deposits', to: '/deposit/approved' },
+      { label: 'Successful Deposits', to: '/deposit/successful' },
+      { label: 'Rejected Deposits', to: '/deposit/rejected' },
+      { label: 'Initiated Deposits', to: '/deposit/initiated' },
+      { label: 'All Deposits', to: '/deposit/all' },
     ],
   },
   {
     label: 'Withdrawals',
     icon: 'la la-bank',
-    badge: '!',
+    badge: true,
     subItems: [
-      { label: 'Pending Withdrawals', path: '/withdraw/pending', badge: 17 },
-      { label: 'Approved Withdrawals', path: '/withdraw/approved' },
-      { label: 'Rejected Withdrawals', path: '/withdraw/rejected' },
-      { label: 'All Withdrawals', path: '/withdraw/all' },
+      { label: 'Pending Withdrawals', to: '/withdraw/pending', badge: 17 },
+      { label: 'Approved Withdrawals', to: '/withdraw/approved' },
+      { label: 'Rejected Withdrawals', to: '/withdraw/rejected' },
+      { label: 'All Withdrawals', to: '/withdraw/all' },
     ],
   },
   {
     label: 'Support Ticket',
     icon: 'la la-ticket',
-    badge: '!',
+    badge: true,
     subItems: [
-      { label: 'Pending Ticket', path: '/ticket/pending', badge: 50 },
-      { label: 'Closed Ticket', path: '/ticket/closed' },
-      { label: 'Answered Ticket', path: '/ticket/answered' },
-      { label: 'All Ticket', path: '/ticket' },
+      { label: 'Pending Ticket', to: '/ticket/pending', badge: 50 },
+      { label: 'Closed Ticket', to: '/ticket/closed' },
+      { label: 'Answered Ticket', to: '/ticket/answered' },
+      { label: 'All Ticket', to: '/ticket' },
     ],
   },
   {
     label: 'Report',
     icon: 'la la-list',
     subItems: [
-      { label: 'Transaction History', path: '/report/transaction' },
-      { label: 'Sold Ticket History', path: '/report/lottery/tickets' },
-      { label: 'Winner History', path: '/report/winners' },
-      { label: 'Commission History', path: '/report/commissions' },
-      { label: 'Login History', path: '/report/login/history' },
-      { label: 'Notification History', path: '/report/notification/history' },
+      { label: 'Transaction History', to: '/report/transaction' },
+      { label: 'Sold Ticket History', to: '/report/lottery/tickets' },
+      { label: 'Winner History', to: '/report/winners' },
+      { label: 'Commission History', to: '/report/commissions' },
+      { label: 'Login History', to: '/report/login/history' },
+      { label: 'Notification History', to: '/report/notification/history' },
     ],
   },
   {
     label: 'Subscribers',
     icon: 'las la-thumbs-up',
-    path: '/subscriber',
+    to: '/subscriber',
   },
   {
     label: 'System Setting',
     icon: 'las la-life-ring',
-    path: '/system-setting',
+    to: '/system-setting',
   },
   {
     label: 'Extra',
     icon: 'la la-server',
     subItems: [
-      { label: 'Application', path: '/system/info' },
-      { label: 'Server', path: '/system/server-info' },
-      { label: 'Cache', path: '/system/optimize' },
-      { label: 'Update', path: '/system/system-update' },
+      { label: 'Application', to: '/system/info' },
+      { label: 'Server', to: '/system/server-info' },
+      { label: 'Cache', to: '/system/optimize' },
+      { label: 'Update', to: '/system/system-update' },
     ],
   },
   {
     label: 'Report & Request',
     icon: 'las la-bug',
-    path: '/request-report',
+    to: '/request-report',
   },
 ];
 
@@ -111,75 +111,74 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleClick = (item) => {
-    if (item.subItems) {
-      setOpenMenu(openMenu === item.label ? '' : item.label);
-    } else if (item.path) {
-      navigate(item.path);
+  const toggleMenu = (label) => {
+    setOpenMenu(openMenu === label ? '' : label);
+  };
+
+  const handleNavigate = (path) => {
+    if (path) {
+      navigate(path);
     }
   };
 
   return (
-    <div className="sidebar h-screen w-64 fixed flex flex-col p-4 shadow-lg">
-      <div className="flex items-center gap-3 mb-8 text-2xl font-bold">
-        <img src="/assets/images/logoIcon/logo.png" alt="Logo" className="h-10" />
-        LottoLab
-      </div>
-
+    <div className="sidebar">
       <div className="sidebar__menu-wrapper">
         <ul className="sidebar__menu">
-          {menuItems.map((item) => (
+          {menuData.map((item) => (
             <MenuItem
               key={item.label}
               item={item}
               isOpen={openMenu === item.label}
-              onClick={() => handleClick(item)}
-              navigate={navigate}
+              onClick={() => toggleMenu(item.label)}
+              navigate={handleNavigate}
               activePath={location.pathname}
             />
           ))}
         </ul>
+        <div className="mt-auto text-xs text-gray-400">LOTTOLAB V3.1</div>
       </div>
-
-      <div className="mt-auto text-xs text-gray-400">LOTTOLAB V3.1</div>
     </div>
   );
 };
 
 const MenuItem = ({ item, isOpen, onClick, navigate, activePath }) => {
   const hasChildren = item.subItems && item.subItems.length > 0;
-  const isActive = item.path && item.path === activePath;
+  const isActive = item.to && item.to === activePath;
 
   return (
     <li className={`sidebar-menu-item ${hasChildren ? 'sidebar-dropdown' : ''} ${isOpen ? 'open' : ''} ${isActive ? 'active' : ''}`}>
       <a
-        href={item.path || '#'}
+        href={item.to || '#'}
         className={`nav-link ${isOpen ? 'side-menu--open' : ''}`}
         onClick={(e) => {
           e.preventDefault();
-          onClick();
+          if (hasChildren) {
+            onClick();
+          } else if (item.to) {
+            navigate(item.to);
+          }
         }}
       >
         <i className={`menu-icon ${item.icon}`}></i>
         <span className="menu-title">{item.label}</span>
-        {item.badge && typeof item.badge === 'string' && (
+        {item.badge && typeof item.badge === 'boolean' && (
           <span className="menu-badge menu-badge-level-one bg--warning ms-auto">
             <i className="fas fa-exclamation"></i>
           </span>
         )}
       </a>
-
       {hasChildren && (
         <div className={`sidebar-submenu ${isOpen ? 'sidebar-submenu__open' : ''}`}>
           <ul>
             {item.subItems.map((sub) => (
-              <li key={sub.label} className={`sidebar-menu-item ${sub.path === activePath ? 'active' : ''}`}>
+              <li key={sub.label} className={`sidebar-menu-item ${sub.to === activePath ? 'active' : ''}`}>
                 <a
-                  href={sub.path || '#'}
+                  href={sub.to || '#'}
                   className="nav-link"
                   onClick={(e) => {
                     e.preventDefault();
-                    if (sub.path) navigate(sub.path);
+                    if (sub.to) navigate(sub.to);
                   }}
                 >
                   <i className="menu-icon las la-dot-circle"></i>
