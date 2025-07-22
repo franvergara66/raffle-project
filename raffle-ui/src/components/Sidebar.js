@@ -143,7 +143,11 @@ const MenuItem = ({ item, open, onToggle, onNavigate }) => {
   if (item.subItems) {
     return (
       <li className={`sidebar-menu-item sidebar-dropdown ${open ? 'open' : ''}`}>
-        <a href="javascript:void(0)" onClick={onToggle} className={open ? 'side-menu--open' : ''}>
+        <button
+          type="button"
+          onClick={onToggle}
+          className={open ? 'side-menu--open' : ''}
+        >
           <i className={`menu-icon ${item.icon}`}></i>
           <span className="menu-title">{item.label}</span>
           {item.badge && (
@@ -151,18 +155,22 @@ const MenuItem = ({ item, open, onToggle, onNavigate }) => {
               <i className="fas fa-exclamation"></i>
             </span>
           )}
-        </a>
+        </button>
         <div className={`sidebar-submenu ${open ? 'sidebar-submenu__open' : ''}`}>
           <ul>
             {item.subItems.map((sub, idx) => (
               <li key={idx} className="sidebar-menu-item">
-                <a onClick={() => onNavigate(sub.to)} className="nav-link">
+                <button
+                  type="button"
+                  onClick={() => onNavigate(sub.to)}
+                  className="nav-link"
+                >
                   <i className="menu-icon las la-dot-circle"></i>
                   <span className="menu-title">{sub.label}</span>
                   {sub.badge && (
                     <span className="menu-badge bg--info ms-auto">{sub.badge}</span>
                   )}
-                </a>
+                </button>
               </li>
             ))}
           </ul>
@@ -173,10 +181,10 @@ const MenuItem = ({ item, open, onToggle, onNavigate }) => {
 
   return (
     <li className="sidebar-menu-item">
-      <a onClick={() => onNavigate(item.to)} className="nav-link">
+      <button type="button" onClick={() => onNavigate(item.to)} className="nav-link">
         <i className={`menu-icon ${item.icon}`}></i>
         <span className="menu-title">{item.label}</span>
-      </a>
+      </button>
     </li>
   );
 };
