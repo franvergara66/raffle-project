@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const menuData = [
   {
@@ -109,9 +109,10 @@ const menuData = [
 const Sidebar = () => {
   const [openMenu, setOpenMenu] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const toggleMenu = (menu) => {
-    setOpenMenu(openMenu === menu ? '' : menu);
+  const toggleMenu = (label) => {
+    setOpenMenu(openMenu === label ? '' : label);
   };
 
   const handleNavigate = (path) => {
@@ -122,69 +123,75 @@ const Sidebar = () => {
 
   return (
     <div className="sidebar">
-      <div id="sidebar__menuWrapper" className="sidebar__menu-wrapper">
+      <div className="sidebar__menu-wrapper">
         <ul className="sidebar__menu">
-          {menuData.map((item, idx) => (
+          {menuData.map((item) => (
             <MenuItem
-              key={idx}
+              key={item.label}
               item={item}
-              open={openMenu === idx}
-              onToggle={() => toggleMenu(idx)}
-              onNavigate={handleNavigate}
+              isOpen={openMenu === item.label}
+              onClick={() => toggleMenu(item.label)}
+              navigate={handleNavigate}
+              activePath={location.pathname}
             />
           ))}
         </ul>
+        <div className="mt-auto text-xs text-gray-400">LOTTOLAB V3.1</div>
       </div>
     </div>
   );
 };
 
-const MenuItem = ({ item, open, onToggle, onNavigate }) => {
-  if (item.subItems) {
-    return (
-      <li className={`sidebar-menu-item sidebar-dropdown ${open ? 'open' : ''}`}>
-        <button
-          type="button"
-          onClick={onToggle}
-          className={open ? 'side-menu--open' : ''}
-        >
-          <i className={`menu-icon ${item.icon}`}></i>
-          <span className="menu-title">{item.label}</span>
-          {item.badge && (
-            <span className="menu-badge menu-badge-level-one bg--warning ms-auto">
-              <i className="fas fa-exclamation"></i>
-            </span>
-          )}
-        </button>
-        <div className={`sidebar-submenu ${open ? 'sidebar-submenu__open' : ''}`}>
+const MenuItem = ({ item, isOpen, onClick, navigate, activePath }) => {
+  const hasChildren = item.subItems && item.subItems.length > 0;
+  const isActive = item.to && item.to === activePath;
+
+  return (
+    <li className={`sidebar-menu-item ${hasChildren ? 'sidebar-dropdown' : ''} ${isOpen ? 'open' : ''} ${isActive ? 'active' : ''}`}>
+      <a
+        href={item.to || '#'}
+        className={`nav-link ${isOpen ? 'side-menu--open' : ''}`}
+        onClick={(e) => {
+          e.preventDefault();
+          if (hasChildren) {
+            onClick();
+          } else if (item.to) {
+            navigate(item.to);
+          }
+        }}
+      >
+        <i className={`menu-icon ${item.icon}`}></i>
+        <span className="menu-title">{item.label}</span>
+        {item.badge && typeof item.badge === 'boolean' && (
+          <span className="menu-badge menu-badge-level-one bg--warning ms-auto">
+            <i className="fas fa-exclamation"></i>
+          </span>
+        )}
+      </a>
+      {hasChildren && (
+        <div className={`sidebar-submenu ${isOpen ? 'sidebar-submenu__open' : ''}`}>
           <ul>
-            {item.subItems.map((sub, idx) => (
-              <li key={idx} className="sidebar-menu-item">
-                <button
-                  type="button"
-                  onClick={() => onNavigate(sub.to)}
+            {item.subItems.map((sub) => (
+              <li key={sub.label} className={`sidebar-menu-item ${sub.to === activePath ? 'active' : ''}`}>
+                <a
+                  href={sub.to || '#'}
                   className="nav-link"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (sub.to) navigate(sub.to);
+                  }}
                 >
                   <i className="menu-icon las la-dot-circle"></i>
                   <span className="menu-title">{sub.label}</span>
                   {sub.badge && (
                     <span className="menu-badge bg--info ms-auto">{sub.badge}</span>
                   )}
-                </button>
+                </a>
               </li>
             ))}
           </ul>
         </div>
-      </li>
-    );
-  }
-
-  return (
-    <li className="sidebar-menu-item">
-      <button type="button" onClick={() => onNavigate(item.to)} className="nav-link">
-        <i className={`menu-icon ${item.icon}`}></i>
-        <span className="menu-title">{item.label}</span>
-      </button>
+      )}
     </li>
   );
 };
