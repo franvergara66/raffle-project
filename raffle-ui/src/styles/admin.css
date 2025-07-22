@@ -146,3 +146,26 @@ input:not([type='radio']), textarea { padding:10px 20px; border-radius:5px; back
 .widget-seven__arrow i {
   font-size: 16px;
 }
+/* Sidebar menu button styles to align with theme */
+.sidebar__menu .sidebar-menu-item > button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 12px 25px;
+  background: transparent;
+  border: none;
+  text-align: left;
+}
+
+.sidebar__menu .sidebar-menu-item > button:hover {
+  background-color: #EBECF0;
+  padding-left: 25px;
+}
+
+.sidebar__menu .sidebar-menu-item > button .menu-icon {
+  margin-right: 15px;
+}
+
+.sidebar__menu .sidebar-submenu .sidebar-menu-item > button {
+  padding: 10px 20px 10px 35px;
+}
