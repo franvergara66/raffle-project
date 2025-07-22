@@ -171,21 +171,28 @@ input:not([type='radio']), textarea { padding:10px 20px; border-radius:5px; back
 }
 
 /* Ajustar la zona del logo para que coincida con la altura de la barra de navegación */
+
+/*
+  Ajustamos manualmente las medidas para que la zona del logo y la barra de
+  navegación tengan exactamente la misma altura.  Utilizamos !important para
+  asegurarnos de sobrescribir los estilos del tema original incluidos en
+  "app.css".
+*/
 .sidebar__logo {
-  height: 60px;
-  padding: 0 10px;
-  display: flex;
-  align-items: center;
+  height: 60px !important;
+  padding: 0 10px !important;
+  display: flex !important;
+  align-items: center !important;
 }
 
 .sidebar__logo .sidebar__main-logo img {
-  max-height: 40px;
+  max-height: 40px !important;
 }
 
 /* Align the navbar with the sidebar logo */
 .navbar-wrapper {
-  height: 60px;
-  padding: 0 30px;
-  display: flex;
-  align-items: center;
+  height: 60px !important;
+  padding: 0 30px !important;
+  display: flex !important;
+  align-items: center !important;
 }
