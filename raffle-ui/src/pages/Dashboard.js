@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import AdminNotifications from '../components/AdminNotifications';
+import TicketSalesChart from '../components/TicketSalesChart';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
@@ -101,6 +102,13 @@ function Dashboard() {
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="card mt-4">
+        <div className="card-body">
+          <h5 className="card-title">Ticket Sales</h5>
+          <TicketSalesChart />
+        </div>
       </div>
 
       <AdminNotifications />
