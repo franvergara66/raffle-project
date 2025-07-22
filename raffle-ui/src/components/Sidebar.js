@@ -143,9 +143,12 @@ const MenuItem = ({ item, open, onToggle, onNavigate }) => {
   if (item.subItems) {
     return (
       <li className={`sidebar-menu-item sidebar-dropdown ${open ? 'open' : ''}`}>
-        <button
-          type="button"
-          onClick={onToggle}
+        <a
+          href="/"
+          onClick={(e) => {
+            e.preventDefault();
+            onToggle();
+          }}
           className={open ? 'side-menu--open' : ''}
         >
           <i className={`menu-icon ${item.icon}`}></i>
@@ -155,14 +158,17 @@ const MenuItem = ({ item, open, onToggle, onNavigate }) => {
               <i className="fas fa-exclamation"></i>
             </span>
           )}
-        </button>
+        </a>
         <div className={`sidebar-submenu ${open ? 'sidebar-submenu__open' : ''}`}>
           <ul>
             {item.subItems.map((sub, idx) => (
               <li key={idx} className="sidebar-menu-item">
-                <button
-                  type="button"
-                  onClick={() => onNavigate(sub.to)}
+                <a
+                  href={sub.to}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate(sub.to);
+                  }}
                   className="nav-link"
                 >
                   <i className="menu-icon las la-dot-circle"></i>
@@ -170,7 +176,7 @@ const MenuItem = ({ item, open, onToggle, onNavigate }) => {
                   {sub.badge && (
                     <span className="menu-badge bg--info ms-auto">{sub.badge}</span>
                   )}
-                </button>
+                </a>
               </li>
             ))}
           </ul>
@@ -181,10 +187,17 @@ const MenuItem = ({ item, open, onToggle, onNavigate }) => {
 
   return (
     <li className="sidebar-menu-item">
-      <button type="button" onClick={() => onNavigate(item.to)} className="nav-link">
+      <a
+        href={item.to}
+        onClick={(e) => {
+          e.preventDefault();
+          onNavigate(item.to);
+        }}
+        className="nav-link"
+      >
         <i className={`menu-icon ${item.icon}`}></i>
         <span className="menu-title">{item.label}</span>
-      </button>
+      </a>
     </li>
   );
 };
