@@ -13,15 +13,33 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import './styles/admin.css';
+import './styles/content.css';
 import './App.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 // Load styles located in the public assets folder
-const publicStyle = document.createElement('link');
-publicStyle.rel = 'stylesheet';
-publicStyle.href = `${process.env.PUBLIC_URL}/assets/admin/css/app.css`;
-document.head.appendChild(publicStyle);
+const styleHrefs = [
+  'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap',
+  `${process.env.PUBLIC_URL}/assets/admin/css/vendor/bootstrap.min.css`,
+  `${process.env.PUBLIC_URL}/assets/admin/css/vendor/bootstrap-toggle.min.css`,
+  `${process.env.PUBLIC_URL}/assets/admin/css/all.min.css`,
+  `${process.env.PUBLIC_URL}/assets/admin/css/line-awesome.min.css`,
+  'https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css',
+  `${process.env.PUBLIC_URL}/assets/admin/css/vendor/select2.min.css`,
+  `${process.env.PUBLIC_URL}/assets/admin/css/app.css`,
+  `${process.env.PUBLIC_URL}/assets/global/css/iziToast.min.css`,
+  `${process.env.PUBLIC_URL}/assets/global/css/iziToast_custom.css`,
+  `${process.env.PUBLIC_URL}/assets/admin/css/reset.css`,
+  `${process.env.PUBLIC_URL}/assets/admin/css/content.css`,
+];
+
+styleHrefs.forEach((href) => {
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = href;
+  document.head.appendChild(link);
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
