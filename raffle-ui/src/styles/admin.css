@@ -172,9 +172,13 @@ input:not([type='radio']), textarea { padding:10px 20px; border-radius:5px; back
 
 /* Ajustar la zona del logo para que coincida con la altura de la barra de navegación */
 .sidebar__logo {
-  padding: 15px 10px;
+  height: 70px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
 }
 
 .sidebar__logo .sidebar__main-logo img {
-  max-height: 35px;
+  height: 40px !important;
+  width: auto;
 }
