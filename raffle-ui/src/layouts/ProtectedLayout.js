@@ -8,7 +8,13 @@ const ProtectedLayout = ({ children }) => {
       <Sidebar />
       <div style={{ width: '100%' }}>
         <Navbar />
-        <main style={{ marginLeft: '16rem', padding: '1rem', width: '100%' }}>
+        <main
+          style={{
+            marginLeft: '250px',
+            width: 'calc(100% - 250px)',
+            padding: '1rem',
+          }}
+        >
           {children}
         </main>
       </div>
