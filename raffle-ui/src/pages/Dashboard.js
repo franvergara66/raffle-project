@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AdminNotifications from '../components/AdminNotifications';
 
 function Dashboard() {
@@ -32,25 +32,6 @@ function Dashboard() {
     total_withdraw_pending: 0,
   };
 
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  const depositMonth = [12, 19, 3, 5, 2, 3, 10, 11, 6, 8, 12, 7];
-  const withdrawMonth = [2, 3, 20, 5, 1, 4, 8, 6, 9, 7, 5, 3];
-
-  const depositDay = Array.from({ length: 30 }, (_, i) => `D${i + 1}`);
-  const depositDayAmount = depositDay.map(() => Math.floor(Math.random() * 10) + 1);
-  const withdrawDayAmount = depositDay.map(() => Math.floor(Math.random() * 10) + 1);
-
-  const browserData = { Chrome: 100, Firefox: 40, Safari: 25, Other: 10 };
-  const osData = { Windows: 80, Mac: 40, Linux: 20, Other: 5 };
-  const countryData = { USA: 50, UK: 30, Spain: 20, Other: 10 };
-
-  const barChartRef = useRef(null);
-  const depositLineRef = useRef(null);
-  const withdrawLineRef = useRef(null);
-  const browserRef = useRef(null);
-  const osRef = useRef(null);
-  const countryRef = useRef(null);
-  const [chartsRendered, setChartsRendered] = useState(false);
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -72,62 +53,6 @@ function Dashboard() {
     fetchStats();
   }, []);
 
-  useEffect(() => {
-    if (!chartsRendered && window.Chart) {
-      new window.Chart(barChartRef.current.getContext('2d'), {
-        type: 'bar',
-        data: {
-          labels: months,
-          datasets: [
-            { label: 'Deposit', data: depositMonth, backgroundColor: '#0d6efd' },
-            { label: 'Withdraw', data: withdrawMonth, backgroundColor: '#dc3545' },
-          ],
-        },
-      });
-
-      new window.Chart(depositLineRef.current.getContext('2d'), {
-        type: 'line',
-        data: {
-          labels: depositDay,
-          datasets: [{ label: 'Deposit', data: depositDayAmount, borderColor: '#0d6efd', fill: false }],
-        },
-      });
-
-      new window.Chart(withdrawLineRef.current.getContext('2d'), {
-        type: 'line',
-        data: {
-          labels: depositDay,
-          datasets: [{ label: 'Withdraw', data: withdrawDayAmount, borderColor: '#dc3545', fill: false }],
-        },
-      });
-
-      new window.Chart(browserRef.current.getContext('2d'), {
-        type: 'doughnut',
-        data: {
-          labels: Object.keys(browserData),
-          datasets: [{ data: Object.values(browserData), backgroundColor: ['#ff7675', '#6c5ce7', '#ffa62b', '#ffeaa7'] }],
-        },
-      });
-
-      new window.Chart(osRef.current.getContext('2d'), {
-        type: 'doughnut',
-        data: {
-          labels: Object.keys(osData),
-          datasets: [{ data: Object.values(osData), backgroundColor: ['#0dcaf0', '#198754', '#ffc107', '#dc3545'] }],
-        },
-      });
-
-      new window.Chart(countryRef.current.getContext('2d'), {
-        type: 'doughnut',
-        data: {
-          labels: Object.keys(countryData),
-          datasets: [{ data: Object.values(countryData), backgroundColor: ['#6610f2', '#20c997', '#fd7e14', '#6f42c1'] }],
-        },
-      });
-
-      setChartsRendered(true);
-    }
-  }, [chartsRendered]);
 
   const boxes = [
     { color: 'bg--primary', icon: 'fa-users', label: 'Total Users', value: stats.totalUsers },
@@ -163,6 +88,20 @@ function Dashboard() {
         </div>
       )}
 
+      <div className="d-flex mb-30 flex-wrap gap-3 justify-content-between align-items-center">
+        <h6 className="page-title">Dashboard</h6>
+        <div className="d-flex flex-wrap justify-content-end gap-2 align-items-center breadcrumb-plugins">
+          <button
+            className="btn btn-outline--primary btn-sm"
+            data-bs-toggle="modal"
+            data-bs-target="#cronModal"
+          >
+            <i className="las la-server"></i>
+            Cron Setup
+          </button>
+        </div>
+      </div>
+
       <div className="row gy-4">
         {boxes.map((b) => (
           <div key={b.label} className="col-xxl-3 col-sm-6">
@@ -191,7 +130,7 @@ function Dashboard() {
           <div className="card">
             <div className="card-body">
               <h5 className="card-title">Monthly Deposit & Withdraw Report</h5>
-              <canvas ref={barChartRef} height="300"></canvas>
+              <p className="mb-0">Chart disabled</p>
             </div>
           </div>
         </div>
@@ -224,52 +163,6 @@ function Dashboard() {
                   <p className="text--small">Total Withdraw Charge</p>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="row gy-4 mt-4">
-        <div className="col-xl-6">
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">Last 30 days Deposit History</h5>
-              <canvas ref={depositLineRef} height="300"></canvas>
-            </div>
-          </div>
-        </div>
-        <div className="col-xl-6">
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">Last 30 days Withdraw History</h5>
-              <canvas ref={withdrawLineRef} height="300"></canvas>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="row gy-4 mt-4">
-        <div className="col-xl-4 col-lg-6">
-          <div className="card overflow-hidden">
-            <div className="card-body">
-              <h5 className="card-title">Login By Browser</h5>
-              <canvas ref={browserRef} height="274"></canvas>
-            </div>
-          </div>
-        </div>
-        <div className="col-xl-4 col-lg-6">
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">Login By OS</h5>
-              <canvas ref={osRef} height="274"></canvas>
-            </div>
-          </div>
-        </div>
-        <div className="col-xl-4 col-lg-6">
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">Login By Country</h5>
-              <canvas ref={countryRef} height="274"></canvas>
             </div>
           </div>
         </div>
