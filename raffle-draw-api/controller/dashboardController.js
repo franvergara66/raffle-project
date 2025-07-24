@@ -1,12 +1,10 @@
-const db = require('../db/db');
 const Admin = require('../models/adminModel');
 
 exports.getStats = async (_req, res) => {
-  // Gather stats from db and admin model
-  const tickets = db.find();
-  const totalSellTicket = tickets.length;
-  const totalSellAmount = tickets.reduce((sum, t) => sum + (t.price || 0), 0);
-  const uniqueUsers = new Set(tickets.map(t => t.username));
+  // Ticket stats are not available without the legacy DB
+  const totalSellTicket = 0;
+  const totalSellAmount = 0;
+  const uniqueUsers = new Set();
   let adminsCount = 0;
   try {
     const admins = await Admin.findAll();
