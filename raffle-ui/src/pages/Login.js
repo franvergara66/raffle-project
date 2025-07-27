@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 function Login() {
@@ -68,6 +68,11 @@ function Login() {
               <div className="row">
                 <div className="col-12">
                   <button type="submit" className="btn btn-primary btn-block">Sign In</button>
+                </div>
+              </div>
+              <div className="row mt-2">
+                <div className="col-12 text-right">
+                  <Link to="/forgot-password">Forgot password?</Link>
                 </div>
               </div>
             </form>
