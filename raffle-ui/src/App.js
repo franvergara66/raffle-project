@@ -3,6 +3,9 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import ForgotPassword from './pages/ForgotPassword';
+import LotteryList from './pages/lottery/List';
+import LotteryCreate from './pages/lottery/Create';
+import LotteryEdit from './pages/lottery/Edit';
 import ProtectedLayout from './layouts/ProtectedLayout';
 
 // Toastify
@@ -29,7 +32,7 @@ function App() {
       />
 
       <Routes>
-        <Route path="/" element={<Navigate to="/Dashboard" />} />
+        <Route path="/" element={<Navigate to="/dashboard" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
 
@@ -39,6 +42,43 @@ function App() {
             isAuthenticated() ? (
               <ProtectedLayout>
                 <Dashboard />
+              </ProtectedLayout>
+            ) : (
+              <Navigate to="/Login" />
+            )
+          }
+        />
+
+        <Route
+          path="/lottery"
+          element={
+            isAuthenticated() ? (
+              <ProtectedLayout>
+                <LotteryList />
+              </ProtectedLayout>
+            ) : (
+              <Navigate to="/Login" />
+            )
+          }
+        />
+        <Route
+          path="/lottery/create"
+          element={
+            isAuthenticated() ? (
+              <ProtectedLayout>
+                <LotteryCreate />
+              </ProtectedLayout>
+            ) : (
+              <Navigate to="/Login" />
+            )
+          }
+        />
+        <Route
+          path="/lottery/:id/edit"
+          element={
+            isAuthenticated() ? (
+              <ProtectedLayout>
+                <LotteryEdit />
               </ProtectedLayout>
             ) : (
               <Navigate to="/Login" />
