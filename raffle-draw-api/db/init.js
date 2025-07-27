@@ -53,6 +53,53 @@ async function initialize() {
     await pool.query(sql);
     console.log("✅ Tabla 'admins' verificada o creada");
 
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS lotteries (
+        id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(100) NOT NULL,
+        price DECIMAL(10,2) NOT NULL,
+        detail TEXT,
+        image VARCHAR(255),
+        status TINYINT DEFAULT 1,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+      ) ENGINE=InnoDB;
+    `);
+    console.log("✅ Tabla 'lotteries' lista");
+
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS phases (
+        id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        lottery_id BIGINT UNSIGNED NOT NULL,
+        phase_number INT NOT NULL,
+        start DATETIME NOT NULL,
+        end DATETIME NOT NULL,
+        quantity INT NOT NULL,
+        available INT NOT NULL,
+        at_dr TINYINT DEFAULT 1,
+        status TINYINT DEFAULT 1,
+        draw_status TINYINT DEFAULT 0,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        FOREIGN KEY (lottery_id) REFERENCES lotteries(id) ON DELETE CASCADE
+      ) ENGINE=InnoDB;
+    `);
+    console.log("✅ Tabla 'phases' lista");
+
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS win_bonuses (
+        id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        lottery_id BIGINT UNSIGNED NOT NULL,
+        level INT NOT NULL,
+        amount DECIMAL(10,2) NOT NULL,
+        status TINYINT DEFAULT 1,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        FOREIGN KEY (lottery_id) REFERENCES lotteries(id) ON DELETE CASCADE
+      ) ENGINE=InnoDB;
+    `);
+    console.log("✅ Tabla 'win_bonuses' lista");
+
     // 5. Verificar si hay algún admin
     const [rows] = await pool.query(`SELECT COUNT(*) AS total FROM admins`);
     if (rows[0].total === 0) {
