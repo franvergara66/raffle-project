@@ -75,26 +75,28 @@ function LotteryList() {
     <div className="bodywrapper__inner">
       <div className="d-flex mb-3 justify-content-between align-items-center">
         <h6 className="page-title">Lotteries</h6>
-        <div className="d-flex gap-2">
-          <div className="input-group">
-            <input
-              type="search"
-              id="search"
-              name="search"
-              className="form-control bg--white"
-              placeholder="Search lottery"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-            <button className="btn btn--primary" type="button">
-              <i className="la la-search" />
-            </button>
-          </div>
+        <div className="d-flex flex-wrap justify-content-end gap-2 align-items-center breadcrumb-plugins">
+          <form className="d-flex flex-wrap gap-2" onSubmit={(e) => e.preventDefault()}>
+            <div className="input-group w-auto flex-fill">
+              <input
+                type="search"
+                id="search"
+                name="search"
+                className="form-control bg--white"
+                placeholder="Search lottery"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <button className="btn btn--primary" type="submit">
+                <i className="la la-search" />
+              </button>
+            </div>
+          </form>
           <Link
             to="/lottery/create"
-            className="btn btn-sm btn-outline--primary d-flex align-items-center"
+            className="btn btn-sm btn-outline--primary"
           >
-            <i className="la la-plus me-1" />Add New
+            <i className="la la-plus" />Add New
           </Link>
         </div>
       </div>
