@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function LotteryList() {
   const navigate = useNavigate();
@@ -83,9 +83,12 @@ function LotteryList() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <button className="btn btn-primary" onClick={() => navigate('/lottery/create')}>
-            Create
-          </button>
+          <Link
+            to="/lottery/create"
+            className="btn btn-sm btn-outline--primary d-flex align-items-center"
+          >
+            <i className="la la-plus me-1" />Add New
+          </Link>
         </div>
       </div>
       <table className="table">
