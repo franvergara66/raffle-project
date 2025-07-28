@@ -76,13 +76,20 @@ function LotteryList() {
       <div className="d-flex mb-3 justify-content-between align-items-center">
         <h6 className="page-title">Lotteries</h6>
         <div className="d-flex gap-2">
-          <input
-            type="search"
-            className="form-control"
-            placeholder="Search lottery"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
+          <div className="input-group">
+            <input
+              type="search"
+              id="search"
+              name="search"
+              className="form-control bg--white"
+              placeholder="Search lottery"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <button className="btn btn--primary" type="button">
+              <i className="la la-search" />
+            </button>
+          </div>
           <Link
             to="/lottery/create"
             className="btn btn-sm btn-outline--primary d-flex align-items-center"
