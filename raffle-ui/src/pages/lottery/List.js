@@ -92,9 +92,9 @@ function LotteryList() {
           </div>
           <Link
             to="/lottery/create"
-            className="btn btn-sm btn-outline--primary d-flex align-items-center"
+            className="btn btn-sm btn-outline--primary"
           >
-            <i className="la la-plus me-1" />Add New
+            <i className="la la-plus" />Add New
           </Link>
         </div>
       </div>
