@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [notifications, setNotifications] = useState([]);
   const user = JSON.parse(localStorage.getItem('user')) || { name: 'admin' };
 
@@ -30,6 +32,12 @@ const Navbar = () => {
 
   const notificationCount =
     notifications.length > 9 ? '9+' : notifications.length;
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    navigate('/login');
+  };
 
   return (
     <nav className="navbar-wrapper bg--dark d-flex flex-wrap">
@@ -156,10 +164,10 @@ const Navbar = () => {
                 <span className="dropdown-menu__caption">Password</span>
               </a>
 
-              <a href="#" className="dropdown-menu__item d-flex align-items-center px-3 py-2">
+              <button type="button" onClick={handleLogout} className="dropdown-menu__item d-flex align-items-center px-3 py-2">
                 <i className="dropdown-menu__icon las la-sign-out-alt"></i>
                 <span className="dropdown-menu__caption">Logout</span>
-              </a>
+              </button>
             </div>
             <button type="button" className="breadcrumb-nav-open ms-2 d-none">
               <i className="las la-sliders-h"></i>
