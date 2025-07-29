@@ -2,7 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
 function Profile() {
-  const [admin, setAdmin] = useState({ name: '', email: '', username: '', image: '' });
+  const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
+  const [admin, setAdmin] = useState({
+    name: storedUser.name || '',
+    email: storedUser.email || '',
+    username: storedUser.username || '',
+    image: storedUser.image || '',
+  });
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -14,6 +20,8 @@ function Profile() {
         if (res.ok) {
           const data = await res.json();
           setAdmin(data);
+        } else {
+          toast.error('Failed to load profile');
         }
       } catch (err) {
         console.error('Error loading profile', err);
