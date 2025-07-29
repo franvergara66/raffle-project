@@ -154,10 +154,14 @@ const Navbar = () => {
               </span>
             </button>
             <div className="dropdown-menu dropdown-menu--sm p-0 border-0 box--shadow1 dropdown-menu-right">
-              <a href="#" className="dropdown-menu__item d-flex align-items-center px-3 py-2">
+              <button
+                type="button"
+                onClick={() => navigate('/profile')}
+                className="dropdown-menu__item d-flex align-items-center px-3 py-2"
+              >
                 <i className="dropdown-menu__icon las la-user-circle"></i>
                 <span className="dropdown-menu__caption">Profile</span>
-              </a>
+              </button>
 
               <a href="#" className="dropdown-menu__item d-flex align-items-center px-3 py-2">
                 <i className="dropdown-menu__icon las la-key"></i>
