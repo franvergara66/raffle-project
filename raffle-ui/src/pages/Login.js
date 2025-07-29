@@ -20,7 +20,7 @@ function Login() {
       if (res.ok) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user)); // save the user
-        toast.success('Login exitoso');
+        toast.success('Login exitoso', { autoClose: 5000 });
         navigate('/Dashboard');
        
       } else {
