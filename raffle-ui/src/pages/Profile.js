@@ -21,7 +21,7 @@ function Profile() {
           const data = await res.json();
           setAdmin(data);
         } else {
-          toast.error('Failed to load profile');
+          toast.error('Failed to load profile', { autoClose: 5000 });
         }
       } catch (err) {
         console.error('Error loading profile', err);
@@ -47,13 +47,13 @@ function Profile() {
         const data = await res.json();
         setAdmin(data.user);
         localStorage.setItem('user', JSON.stringify(data.user));
-        toast.success('Profile updated');
+        toast.success('Profile updated', { autoClose: 5000 });
       } else {
-        toast.error('Failed to update profile');
+        toast.error('Failed to update profile', { autoClose: 5000 });
       }
     } catch (err) {
       console.error('Update error', err);
-      toast.error('Error updating profile');
+      toast.error('Error updating profile', { autoClose: 5000 });
     }
   };
 
