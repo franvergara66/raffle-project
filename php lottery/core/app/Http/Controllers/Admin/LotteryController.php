@@ -13,11 +13,16 @@ use HTMLPurifier;
 
 class LotteryController extends Controller
 {
-    public function index(){
-    	$pageTitle = "Lotteries";
-    	$lotteries = Lottery::orderBy('id','desc')->paginate(getPaginate());
-    	$empty_message = "No Data Found";
-    	return view('admin.lottery.index',compact('pageTitle','lotteries','empty_message'));
+    public function index(Request $request){
+        $pageTitle = "Lotteries";
+        $search = $request->search;
+        $lotteries = Lottery::when($search, function ($query, $search) {
+                return $query->where('name', 'like', "%{$search}%");
+            })
+            ->orderBy('id','desc')
+            ->paginate(getPaginate());
+        $empty_message = "No Data Found";
+        return view('admin.lottery.index',compact('pageTitle','lotteries','empty_message','search'));
     }
 
 
