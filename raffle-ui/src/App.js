@@ -8,6 +8,7 @@ import LotteryCreate from './pages/lottery/Create';
 import LotteryEdit from './pages/lottery/Edit';
 import LotteryPhases from './pages/lottery/Phases';
 import WinBonus from './pages/lottery/WinBonus';
+import Profile from './pages/Profile';
 import ProtectedLayout from './layouts/ProtectedLayout';
 
 // Toastify
@@ -105,6 +106,19 @@ function App() {
             isAuthenticated() ? (
               <ProtectedLayout>
                 <WinBonus />
+              </ProtectedLayout>
+            ) : (
+              <Navigate to="/Login" />
+            )
+          }
+        />
+
+        <Route
+          path="/profile"
+          element={
+            isAuthenticated() ? (
+              <ProtectedLayout>
+                <Profile />
               </ProtectedLayout>
             ) : (
               <Navigate to="/Login" />

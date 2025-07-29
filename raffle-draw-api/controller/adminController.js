@@ -44,6 +44,38 @@ exports.updateAdmin = async (req, res) => {
   }
 };
 
+exports.getProfile = async (req, res) => {
+  try {
+    const admin = await Admin.findById(req.admin.id);
+    if (!admin) {
+      return res.status(404).json({ message: "Admin no encontrado" });
+    }
+    res.json(admin);
+  } catch (err) {
+    res.status(500).json({ message: "Error al obtener perfil", error: err.message });
+  }
+};
+
+exports.updateProfile = async (req, res) => {
+  const { name, email, image } = req.body;
+  try {
+    const current = await Admin.findById(req.admin.id);
+    if (!current) {
+      return res.status(404).json({ message: "Admin no encontrado" });
+    }
+    await Admin.update(req.admin.id, {
+      name: name ?? current.name,
+      email: email ?? current.email,
+      username: current.username,
+      image: image ?? current.image,
+    });
+    const updated = await Admin.findById(req.admin.id);
+    res.json({ message: "Perfil actualizado", user: updated });
+  } catch (err) {
+    res.status(500).json({ message: "Error al actualizar perfil", error: err.message });
+  }
+};
+
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 
