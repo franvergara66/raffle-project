@@ -9,6 +9,7 @@ function Profile() {
     username: storedUser.username || '',
     image: storedUser.image || '',
   });
+  const [preview, setPreview] = useState('');
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -32,6 +33,17 @@ function Profile() {
 
   const handleChange = (e) => {
     setAdmin({ ...admin, [e.target.name]: e.target.value });
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    setPreview(URL.createObjectURL(file));
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setAdmin({ ...admin, image: reader.result });
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleSubmit = async (e) => {
@@ -65,7 +77,17 @@ function Profile() {
             <div className="card-body p-0">
               <div className="d-flex p-3 bg--primary align-items-center">
                 <div className="avatar avatar--lg">
-                  <img src={admin.image || '/assets/images/avatar.png'} alt="profile" />
+                  <img
+                    src={
+                      preview ||
+                      (admin.image
+                        ? admin.image.startsWith('data')
+                          ? admin.image
+                          : `/assets/admin/images/profile/${admin.image}`
+                        : '/assets/images/default.png')
+                    }
+                    alt="profile"
+                  />
                 </div>
                 <div className="ps-3">
                   <h4 className="text--white">{admin.name}</h4>
@@ -101,8 +123,42 @@ function Profile() {
                       <input className="form-control" name="email" type="email" value={admin.email} onChange={handleChange} />
                     </div>
                     <div className="form-group">
-                      <label>Image URL</label>
-                      <input className="form-control" name="image" value={admin.image || ''} onChange={handleChange} />
+                      <label>Image</label>
+                      <div className="image--uploader w-100">
+                        <div className="image-upload-wrapper">
+                          <div
+                            className="image-upload-preview"
+                            style={{
+                              backgroundImage: `url(${
+                                preview ||
+                                (admin.image
+                                  ? admin.image.startsWith('data')
+                                    ? admin.image
+                                    : `/assets/admin/images/profile/${admin.image}`
+                                  : '/assets/images/default.png')
+                              })`,
+                            }}
+                          ></div>
+                          <div className="image-upload-input-wrapper">
+                            <input
+                              type="file"
+                              className="image-upload-input"
+                              id="image-upload-input"
+                              accept=".png, .jpg, .jpeg"
+                              onChange={handleImageChange}
+                            />
+                            <label htmlFor="image-upload-input" className="bg--primary">
+                              <i className="la la-cloud-upload"></i>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="mt-2">
+                        <small className="mt-3 text-muted">
+                          Supported Files: <b>.png, .jpg, .jpeg.</b> Image will be resized into{' '}
+                          <b>400x400</b>px
+                        </small>
+                      </div>
                     </div>
                   </div>
                 </div>
