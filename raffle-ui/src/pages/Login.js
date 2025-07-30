@@ -33,49 +33,64 @@ function Login() {
   };
 
   return (
-    <div className="login-page" style={{ minHeight: '100vh' }}>
-      <div className="login-box">
-        <div className="card card-outline card-primary">
-          <div className="card-header text-center">
-            <h1><b>Admin</b>Login</h1>
-          </div>
-          <div className="card-body">
-            <form onSubmit={loginHandler}>
-              <div className="input-group mb-3">
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder="Email"
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
-                <div className="input-group-append">
-                  <div className="input-group-text"><span className="fas fa-envelope" /></div>
+    <div
+      className="login-main"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/assets/admin/images/1.jpg)`,
+      }}
+    >
+      <div className="container custom-container">
+        <div className="row justify-content-center">
+          <div className="col-xxl-5 col-xl-5 col-lg-6 col-md-8 col-sm-11">
+            <div className="login-area">
+              <div className="login-wrapper">
+                <div className="login-wrapper__top">
+                  <h3 className="title text-white">
+                    Welcome to <strong>LottoLab</strong>
+                  </h3>
+                  <p className="text-white">Admin Login to LottoLab Dashboard</p>
+                </div>
+                <div className="login-wrapper__body">
+                  <form
+                    onSubmit={loginHandler}
+                    className="cmn-form mt-30 login-form"
+                  >
+                    <div className="form-group">
+                      <label htmlFor="email" className="required">
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        className="form-control"
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <div className="form-group">
+                      <div className="d-flex justify-content-between">
+                        <label htmlFor="password" className="required">
+                          Password
+                        </label>
+                        <Link to="/forgot-password" className="forget-text">
+                          Forgot Password?
+                        </Link>
+                      </div>
+                      <input
+                        type="password"
+                        id="password"
+                        className="form-control"
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                      />
+                    </div>
+                    <button type="submit" className="btn cmn-btn w-100">
+                      LOGIN
+                    </button>
+                  </form>
                 </div>
               </div>
-              <div className="input-group mb-3">
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Password"
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-                <div className="input-group-append">
-                  <div className="input-group-text"><span className="fas fa-lock" /></div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-12">
-                  <button type="submit" className="btn btn-primary btn-block">Sign In</button>
-                </div>
-              </div>
-              <div className="row mt-2">
-                <div className="col-12 text-right">
-                  <Link to="/forgot-password">Forgot password?</Link>
-                </div>
-              </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
