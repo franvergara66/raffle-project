@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import { apiFetch } from '../utils/api';
 
 function Profile() {
   const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
@@ -13,11 +14,10 @@ function Profile() {
 
   useEffect(() => {
     const fetchProfile = async () => {
-      const token = localStorage.getItem('token');
       try {
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/admin/profile`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const res = await apiFetch(
+          `${process.env.REACT_APP_API_URL}/api/v1/admin/profile`
+        );
         if (res.ok) {
           const data = await res.json();
           setAdmin(data);
@@ -48,11 +48,10 @@ function Profile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem('token');
     try {
-      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/admin/profile`, {
+      const res = await apiFetch(`${process.env.REACT_APP_API_URL}/api/v1/admin/profile`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: admin.name, email: admin.email, image: admin.image }),
       });
       if (res.ok) {
