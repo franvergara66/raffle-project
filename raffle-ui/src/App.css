@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+.Toastify__toast,
+.Toastify__toast--enter,
+.Toastify__toast--exit {
+  animation-duration: 0.5s !important;
+  transition-duration: 0.5s !important;
+}
+
+.Toastify__progress-bar--animated {
+  animation-duration: 3s !important;
+}

@@ -52,13 +52,13 @@ function Dashboard() {
     fetchStats();
   }, []);
 
-  useEffect(() => {
+/*   useEffect(() => {
     toast.info('Test toast - should stay visible for 10 seconds', {
       autoClose: 10000,
       pauseOnHover: true,
       closeOnClick: true,
     });
-  }, []);
+  }, []); */
 
   const boxes = [
     { color: 'bg--primary', icon: 'fa-users', label: 'Total Users', value: stats.totalUsers },
