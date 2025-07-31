@@ -1,19 +1,25 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Recaptcha from '../components/Recaptcha';
 
 function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [captchaToken, setCaptchaToken] = useState('');
 
   const loginHandler = async (e) => {
     e.preventDefault();
+    if (!captchaToken) {
+      alert('Please complete the captcha');
+      return;
+    }
     try {
       const res = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/admins/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, captchaToken }),
       });
 
       const data = await res.json();
@@ -82,6 +88,12 @@ function Login() {
                         className="form-control"
                         onChange={(e) => setPassword(e.target.value)}
                         required
+                      />
+                    </div>
+                    <div className="form-group text-center my-3">
+                      <Recaptcha
+                        siteKey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                        onVerify={setCaptchaToken}
                       />
                     </div>
                     <button type="submit" className="btn cmn-btn w-100">
