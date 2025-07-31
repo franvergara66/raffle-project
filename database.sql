@@ -33,7 +33,7 @@ CREATE TABLE `admins` (
   `email` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
   `username` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `role` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT 'editor',
   `created_at` timestamp NULL DEFAULT NULL,

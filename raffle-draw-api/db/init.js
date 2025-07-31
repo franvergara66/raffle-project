@@ -53,7 +53,7 @@ async function initialize() {
         email VARCHAR(40) NOT NULL UNIQUE,
         username VARCHAR(40) NOT NULL UNIQUE,
         email_verified_at TIMESTAMP NULL DEFAULT NULL,
-        image VARCHAR(255) DEFAULT NULL,
+        image LONGTEXT DEFAULT NULL,
         password VARCHAR(255) NOT NULL,
         role VARCHAR(20) DEFAULT 'editor',
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
