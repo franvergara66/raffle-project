@@ -18,14 +18,14 @@ function ForgotPassword() {
       });
       const data = await res.json();
       if (res.ok) {
-        toast.success(data.message?.success?.[0] || 'Code sent', { autoClose: 5000 });
+        toast.success(data.message?.success?.[0] || 'Code sent');
         setEmail(data.data.email);
         setStep('verify');
       } else {
-        toast.error(data.message?.error?.[0] || 'Error sending code', { autoClose: 5000 });
+        toast.error(data.message?.error?.[0] || 'Error sending code');
       }
     } catch (err) {
-      toast.error('Server error', { autoClose: 5000 });
+      toast.error('Server error');
     }
   };
 
@@ -39,12 +39,12 @@ function ForgotPassword() {
       });
       const data = await res.json();
       if (res.ok) {
-        toast.success(data.message?.success?.[0] || 'Code verified', { autoClose: 5000 });
+        toast.success(data.message?.success?.[0] || 'Code verified');
       } else {
-        toast.error(data.message?.error?.[0] || 'Invalid code', { autoClose: 5000 });
+        toast.error(data.message?.error?.[0] || 'Invalid code');
       }
     } catch (err) {
-      toast.error('Server error', { autoClose: 5000 });
+      toast.error('Server error');
     }
   };
 
