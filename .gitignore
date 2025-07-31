@@ -1,6 +1,7 @@
 node_modules/
-.env
 client/raffle-ui/node_modules/
 server/raffle-draw-api/node_modules/
+raffle-ui/.env
+raffle-draw-api/.env
 dist/
 build/
