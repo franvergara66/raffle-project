@@ -9,6 +9,8 @@ function Login() {
   const [password, setPassword] = useState('');
   const [captchaToken, setCaptchaToken] = useState('');
 
+  console.log('RECAPTCHA KEY:', process.env.REACT_APP_RECAPTCHA_SITE_KEY); //
+
   const loginHandler = async (e) => {
     e.preventDefault();
     if (!captchaToken) {
@@ -37,7 +39,6 @@ function Login() {
       alert('Error logging in');
     }
   };
-
   return (
     <div
       className="login-main"
@@ -91,7 +92,10 @@ function Login() {
                       />
                     </div>
                     <div className="form-group text-center my-3">
-                      <Recaptcha onVerify={setCaptchaToken} />
+                      <Recaptcha
+                        siteKey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                        onVerify={setCaptchaToken}
+                      />
                     </div>
                     <button type="submit" className="btn cmn-btn w-100">
                       LOGIN
@@ -106,5 +110,4 @@ function Login() {
     </div>
   );
 }
-
 export default Login;
