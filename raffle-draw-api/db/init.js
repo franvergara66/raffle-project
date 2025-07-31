@@ -1,6 +1,8 @@
+const path = require('path');
 const mysql = require('mysql2/promise');
 const bcrypt = require('bcryptjs');
 require('dotenv').config(); // ← carga .env desde el working directory
+
 
 const {
   DB_HOST,

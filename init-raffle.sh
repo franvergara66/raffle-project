@@ -45,18 +45,22 @@ pkg.scripts.start = 'concurrently \\\"npm --prefix server start\\\" \\\"npm --pr
 fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
 "
 
-# 9. Crear archivo .env en el frontend
-echo "🌐 Configurando variable de entorno..."
-echo 'REACT_APP_API=http://localhost:8000' > client/raffle-ui/.env
+# 9. Crear archivo .env en la raiz
+echo "🌐 Configurando variables de entorno..."
+cat <<EOL > .env
+REACT_APP_API_URL=http://localhost:8000
+REACT_APP_RECAPTCHA_SITE_KEY=
+EOL
 
 # 10. Crear .gitignore raíz
 if [ ! -f .gitignore ]; then
   echo "🛡️ Creando .gitignore..."
   cat <<EOL > .gitignore
 node_modules/
-.env
 client/raffle-ui/node_modules/
 server/raffle-draw-api/node_modules/
+raffle-ui/.env
+raffle-draw-api/.env
 dist/
 build/
 EOL
