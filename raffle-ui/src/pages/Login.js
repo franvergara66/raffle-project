@@ -9,34 +9,63 @@ function Login() {
   const [password, setPassword] = useState('');
   const [captchaToken, setCaptchaToken] = useState('');
 
-  console.log('RECAPTCHA KEY:', process.env.REACT_APP_RECAPTCHA_SITE_KEY); //
 
   const loginHandler = async (e) => {
     e.preventDefault();
-    if (!captchaToken) {
-      alert('Please complete the captcha');
+  
+    if (!email || !password) {
+      toast.error('Email and password are required');
       return;
     }
+  
+    if (!captchaToken) {
+      toast.error('Please complete the captcha');
+      return;
+    }
+  
+    const toastId = toast.loading('Signing in...');
+  
     try {
       const res = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/admins/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password, captchaToken }),
       });
-
+  
       const data = await res.json();
+  
       if (res.ok) {
         localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user)); // save the user
-        toast.success('Login exitoso');
-        navigate('/Dashboard');
-       
+        localStorage.setItem('user', JSON.stringify(data.user));
+  
+        toast.update(toastId, {
+          render: 'Login successful',
+          type: 'success',
+          isLoading: false,
+          autoClose: 3000,
+          closeOnClick: true,
+          pauseOnHover: true,
+        });
+  
+        setTimeout(() => {
+          navigate('/Dashboard');
+        }, 5000); // Give toast time to display
       } else {
-        alert(data.message || 'Login failed');
+        toast.update(toastId, {
+          render: data.message || 'Login failed',
+          type: 'error',
+          isLoading: false,
+          autoClose: 5000,
+        });
       }
     } catch (err) {
       console.error('Login error:', err);
-      alert('Error logging in');
+      toast.update(toastId, {
+        render: 'Network or server error',
+        type: 'error',
+        isLoading: false,
+        autoClose: 5000,
+      });
     }
   };
   return (

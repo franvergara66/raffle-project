@@ -5900,7 +5900,7 @@ th.w-85 {
   cursor: pointer;
   box-shadow: 0 0 0 rgba(115, 103, 240, 0.9);
   animation: pulse-primary 2s infinite;
-  animation-duration: 0.9s;
+  animation-duration: 3.0s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-out;
 }
@@ -5973,7 +5973,7 @@ th.w-85 {
   cursor: pointer;
   box-shadow: 0 0 0 rgba(134, 142, 150, 0.9);
   animation: pulse-secondary 2s infinite;
-  animation-duration: 0.9s;
+  animation-duration: 3.0s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-out;
 }
@@ -6046,7 +6046,7 @@ th.w-85 {
   cursor: pointer;
   box-shadow: 0 0 0 rgba(30, 159, 242, 0.9);
   animation: pulse-info 2s infinite;
-  animation-duration: 0.9s;
+  animation-duration: 3.0s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-out;
 }
@@ -6119,7 +6119,7 @@ th.w-85 {
   cursor: pointer;
   box-shadow: 0 0 0 rgba(255, 159, 67, 0.9);
   animation: pulse-warning 2s infinite;
-  animation-duration: 0.9s;
+  animation-duration: 3.0s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-out;
 }
@@ -6192,7 +6192,7 @@ th.w-85 {
   cursor: pointer;
   box-shadow: 0 0 0 rgba(238, 51, 94, 0.9);
   animation: pulse-danger 2s infinite;
-  animation-duration: 0.9s;
+  animation-duration: 3.0s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-out;
 }

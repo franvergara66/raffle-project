@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import AdminNotifications from '../components/AdminNotifications';
 
 function Dashboard() {
@@ -13,7 +14,6 @@ function Dashboard() {
     totalWinAmount: 0,
   });
 
-  // example additional data similar to the PHP dashboard
   const general = {
     cur_sym: '$',
     cur_text: 'USD',
@@ -31,7 +31,6 @@ function Dashboard() {
     total_withdraw_charge: 0,
     total_withdraw_pending: 0,
   };
-
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -53,6 +52,13 @@ function Dashboard() {
     fetchStats();
   }, []);
 
+  useEffect(() => {
+    toast.info('Test toast - should stay visible for 10 seconds', {
+      autoClose: 10000,
+      pauseOnHover: true,
+      closeOnClick: true,
+    });
+  }, []);
 
   const boxes = [
     { color: 'bg--primary', icon: 'fa-users', label: 'Total Users', value: stats.totalUsers },

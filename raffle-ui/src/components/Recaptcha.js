@@ -1,25 +1,29 @@
 import React, { useEffect } from 'react';
 
-/**
- * Simple wrapper to load and render Google reCAPTCHA.
- * Explicitly renders the captcha once the script has loaded.
- */
 const Recaptcha = ({ siteKey, onVerify }) => {
   useEffect(() => {
     const scriptId = 'recaptcha-script';
 
-    const renderCaptcha = () => {
-      if (window.grecaptcha && siteKey) {
-        // ensure the API is fully loaded before attempting to render
-        if (typeof window.grecaptcha.render === 'function') {
-          window.grecaptcha.ready(() => {
-            window.grecaptcha.render('recaptcha-container', {
-              sitekey: siteKey,
-              callback: onVerify,
-            });
-          });
-        }
+    const initCaptcha = () => {
+      console.log('[reCAPTCHA] Script cargado');
+      if (!window.grecaptcha) {
+        console.error('[reCAPTCHA] grecaptcha no está disponible');
+        return;
       }
+
+      window.grecaptcha.ready(() => {
+        console.log('[reCAPTCHA] grecaptcha.ready ejecutado');
+
+        const container = document.getElementById('recaptcha-container');
+        if (container) {
+          container.innerHTML = ''; // limpiar si fue renderizado antes
+        }
+
+        window.grecaptcha.render('recaptcha-container', {
+          sitekey: siteKey,
+          callback: onVerify,
+        });
+      });
     };
 
     if (!document.getElementById(scriptId)) {
@@ -28,15 +32,15 @@ const Recaptcha = ({ siteKey, onVerify }) => {
       script.src = 'https://www.google.com/recaptcha/api.js?render=explicit';
       script.async = true;
       script.defer = true;
-      script.onload = renderCaptcha;
+      script.onload = initCaptcha;
       document.body.appendChild(script);
     } else {
-      // script already loaded, try rendering immediately
-      renderCaptcha();
+      // ya está cargado, intenta iniciar directamente
+      initCaptcha();
     }
   }, [siteKey, onVerify]);
 
-  return <div id="recaptcha-container" />;
+  return <div id="recaptcha-container" style={{ minHeight: 80 }} />;
 };
 
 export default Recaptcha;
