@@ -10,10 +10,15 @@ const Recaptcha = ({ siteKey, onVerify }) => {
 
     const renderCaptcha = () => {
       if (window.grecaptcha && siteKey) {
-        window.grecaptcha.render('recaptcha-container', {
-          sitekey: siteKey,
-          callback: onVerify,
-        });
+        // ensure the API is fully loaded before attempting to render
+        if (typeof window.grecaptcha.render === 'function') {
+          window.grecaptcha.ready(() => {
+            window.grecaptcha.render('recaptcha-container', {
+              sitekey: siteKey,
+              callback: onVerify,
+            });
+          });
+        }
       }
     };
 
