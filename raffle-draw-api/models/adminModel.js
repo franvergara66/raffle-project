@@ -23,6 +23,11 @@ const Admin = {
     return rows;
   },
 
+  findByUsername: async (username) => {
+    const [rows] = await db.query("SELECT * FROM admins WHERE username = ?", [username]);
+    return rows[0];
+  },
+
   create: async ({ name, email, username, password, image, role = "editor" }) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const [result] = await db.query(

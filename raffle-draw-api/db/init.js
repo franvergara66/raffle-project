@@ -109,6 +109,18 @@ async function initialize() {
     `);
     console.log("✅ Tabla 'win_bonuses' lista");
 
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS admin_password_resets (
+        id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        email VARCHAR(40) NOT NULL,
+        token VARCHAR(40) NOT NULL,
+        status TINYINT DEFAULT 1,
+        created_at TIMESTAMP NULL DEFAULT NULL,
+        updated_at TIMESTAMP NULL DEFAULT NULL
+      ) ENGINE=InnoDB;
+    `);
+    console.log("✅ Tabla 'admin_password_resets' lista");
+
     const [rows] = await pool.query(`SELECT COUNT(*) AS total FROM admins`);
     if (rows[0].total === 0) {
       const hashedPassword = '$2b$10$TQyHKmMJE3ZvBO91/lQRGehqsHzk48xqEPNHm2IGaKClfyN/R82um'; // m3rcur10
