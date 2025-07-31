@@ -4,7 +4,9 @@ import { useNavigate } from 'react-router-dom';
 const Navbar = () => {
   const navigate = useNavigate();
   const [notifications, setNotifications] = useState([]);
-  const user = JSON.parse(localStorage.getItem('user')) || { name: 'admin' };
+  const [user, setUser] = useState(
+    () => JSON.parse(localStorage.getItem('user')) || { name: 'admin' }
+  );
 
   useEffect(() => {
     const fetchNotifications = async () => {
@@ -27,7 +29,18 @@ const Navbar = () => {
       }
     };
 
+    const updateUser = () => {
+      setUser(JSON.parse(localStorage.getItem('user')) || { name: 'admin' });
+    };
+
     fetchNotifications();
+    window.addEventListener('profileUpdated', updateUser);
+    window.addEventListener('storage', updateUser);
+
+    return () => {
+      window.removeEventListener('profileUpdated', updateUser);
+      window.removeEventListener('storage', updateUser);
+    };
   }, []);
 
   const notificationCount =
@@ -141,7 +154,13 @@ const Navbar = () => {
               <span className="navbar-user">
                 <span className="navbar-user__thumb">
                   <img
-                    src="https://script.viserlab.com/lottolab/assets/admin/images/profile/66619f5b5c6091717673819.png"
+                    src={
+                      user.image
+                        ? user.image.startsWith('data')
+                          ? user.image
+                          : `/assets/admin/images/profile/${user.image}`
+                        : '/assets/admin/images/profile/profile.png'
+                    }
                     alt="profile"
                   />
                 </span>

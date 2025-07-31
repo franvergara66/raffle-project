@@ -58,6 +58,7 @@ function Profile() {
         const data = await res.json();
         setAdmin(data.user);
         localStorage.setItem('user', JSON.stringify(data.user));
+        window.dispatchEvent(new Event('profileUpdated'));
         toast.success('Profile updated', { autoClose: 5000 });
       } else {
         toast.error('Failed to update profile', { autoClose: 5000 });
@@ -83,7 +84,7 @@ function Profile() {
                         ? admin.image.startsWith('data')
                           ? admin.image
                           : `/assets/admin/images/profile/${admin.image}`
-                        : '/assets/images/default.png')
+                        : '/assets/admin/images/profile/profile.png')
                     }
                     alt="profile"
                   />
@@ -134,7 +135,7 @@ function Profile() {
                                   ? admin.image.startsWith('data')
                                     ? admin.image
                                     : `/assets/admin/images/profile/${admin.image}`
-                                  : '/assets/images/default.png')
+                                  : '/assets/admin/images/profile/profile.png')
                               })`,
                             }}
                           ></div>
