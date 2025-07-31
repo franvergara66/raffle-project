@@ -107,6 +107,7 @@ exports.login = async (req, res) => {
         name: admin.name,
         email: admin.email,
         username: admin.username,
+        image: admin.image,
       },
     });
   } catch (error) {
