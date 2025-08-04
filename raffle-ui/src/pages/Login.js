@@ -126,7 +126,17 @@ function Login() {
                         onVerify={setCaptchaToken}
                       />
                     </div>
-                    <button type="submit" className="btn cmn-btn w-100">
+                    <button
+                      type="submit"
+                      className="btn cmn-btn w-100"
+                      style={{
+                        backgroundColor: '#3d2bfb',
+                        color: '#fff',
+                        height: '50px',
+                        marginTop: '15px',
+                        borderRadius: '3.2px',
+                      }}
+                    >
                       LOGIN
                     </button>
                   </form>
