@@ -97,7 +97,17 @@ function ForgotPassword() {
                           onVerify={setCaptchaToken}
                         />
                       </div>
-                      <button type="submit" className="btn cmn-btn w-100">
+                      <button
+                        type="submit"
+                        className="btn cmn-btn w-100"
+                        style={{
+                          backgroundColor: '#3d2bfb',
+                          color: '#fff',
+                          height: '50px',
+                          marginTop: '15px',
+                          borderRadius: '3.2px',
+                        }}
+                      >
                         Submit
                       </button>
                       <div className="text-center mt-3">
@@ -122,7 +132,17 @@ function ForgotPassword() {
                           required
                         />
                       </div>
-                      <button type="submit" className="btn cmn-btn w-100">
+                      <button
+                        type="submit"
+                        className="btn cmn-btn w-100"
+                        style={{
+                          backgroundColor: '#3d2bfb',
+                          color: '#fff',
+                          height: '50px',
+                          marginTop: '15px',
+                          borderRadius: '3.2px',
+                        }}
+                      >
                         Verify Code
                       </button>
                     </form>
