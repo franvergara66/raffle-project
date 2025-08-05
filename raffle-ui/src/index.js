@@ -42,6 +42,15 @@ styleHrefs.forEach((href) => {
   document.head.appendChild(link);
 });
 
+// Work around ResizeObserver loop errors in some browsers
+if (typeof window !== 'undefined') {
+  window.addEventListener('error', (e) => {
+    if (e.message === 'ResizeObserver loop completed with undelivered notifications.') {
+      e.stopImmediatePropagation();
+    }
+  });
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);
 
