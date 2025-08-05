@@ -59,13 +59,26 @@ function Profile() {
         setAdmin(data.user);
         localStorage.setItem('user', JSON.stringify(data.user));
         window.dispatchEvent(new Event('profileUpdated'));
-        toast.success('Profile updated');
+        toast.success('Profile Ppdated', {
+          autoClose: 3000,
+          pauseOnHover: true,
+          closeOnClick: true,
+        });
       } else {
-        toast.error('Failed to update profile');
+        
+        toast.error('Failed to Update Profile', {
+          autoClose: 3000,
+          pauseOnHover: true,
+          closeOnClick: true,
+        });
       }
     } catch (err) {
       console.error('Update error', err);
-      toast.error('Error updating profile');
+      toast.error('Error Updating Profile', {
+        autoClose: 3000,
+        pauseOnHover: true,
+        closeOnClick: true,
+      });
     }
   };
 
