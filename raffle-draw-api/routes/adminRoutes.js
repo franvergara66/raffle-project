@@ -7,6 +7,7 @@ router.post("/login", adminCtrl.login);
 // Las siguientes rutas requieren autenticación
 router.get("/profile", authenticateToken, adminCtrl.getProfile);
 router.put("/profile", authenticateToken, adminCtrl.updateProfile);
+router.post("/change-password", authenticateToken, adminCtrl.changePassword);
 router.get("/", authenticateToken, adminCtrl.getAllAdmins);
 router.get("/:id", authenticateToken, adminCtrl.getAdminById);
 router.post("/", authenticateToken, adminCtrl.createAdmin);
