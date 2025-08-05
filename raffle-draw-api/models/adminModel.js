@@ -45,6 +45,15 @@ const Admin = {
     return result;
   },
 
+  updatePassword: async (id, password) => {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const [result] = await db.query(
+      "UPDATE admins SET password = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?",
+      [hashedPassword, id]
+    );
+    return result;
+  },
+
   delete: async (id) => {
     const [result] = await db.query("DELETE FROM admins WHERE id = ?", [id]);
     return result;

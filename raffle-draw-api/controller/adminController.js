@@ -117,6 +117,42 @@ exports.login = async (req, res) => {
 };
 
 
+exports.changePassword = async (req, res) => {
+  const { current_password, password, password_confirmation } = req.body;
+
+  if (!current_password || !password || !password_confirmation) {
+    return res
+      .status(400)
+      .json({ message: "Faltan campos obligatorios" });
+  }
+
+  if (password !== password_confirmation) {
+    return res.status(400).json({ message: "Las contraseñas no coinciden" });
+  }
+
+  try {
+    const admin = await Admin.findById(req.admin.id);
+    if (!admin) {
+      return res.status(404).json({ message: "Admin no encontrado" });
+    }
+
+    const match = await bcrypt.compare(current_password, admin.password);
+    if (!match) {
+      return res
+        .status(400)
+        .json({ message: "La contraseña actual es incorrecta" });
+    }
+
+    await Admin.updatePassword(admin.id, password);
+    return res.json({ message: "Contraseña actualizada" });
+  } catch (err) {
+    return res
+      .status(500)
+      .json({ message: "Error al cambiar contraseña", error: err.message });
+  }
+};
+
+
 exports.deleteAdmin = async (req, res) => {
   try {
     await Admin.delete(req.params.id);

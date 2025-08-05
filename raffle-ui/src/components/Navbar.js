@@ -182,10 +182,14 @@ const Navbar = () => {
                 <span className="dropdown-menu__caption">Profile</span>
               </button>
 
-              <a href="#" className="dropdown-menu__item d-flex align-items-center px-3 py-2">
+              <button
+                type="button"
+                onClick={() => navigate('/password')}
+                className="dropdown-menu__item d-flex align-items-center px-3 py-2"
+              >
                 <i className="dropdown-menu__icon las la-key"></i>
                 <span className="dropdown-menu__caption">Password</span>
-              </a>
+              </button>
 
               <button type="button" onClick={handleLogout} className="dropdown-menu__item d-flex align-items-center px-3 py-2">
                 <i className="dropdown-menu__icon las la-sign-out-alt"></i>
