@@ -35,39 +35,27 @@
         <div class="col-lg-9 col-md-9 mb-30">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title mb-50 border-bottom pb-2">@lang('Change Password')</h5>
+                    <h5 class="card-title mb-4 border-bottom pb-2">@lang('Change Password')</h5>
 
                     <form action="{{ route('admin.password.update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">@lang('Password')</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="password" placeholder="@lang('Password')" name="old_password">
-                            </div>
+                        <div class="form-group">
+                            <label for="old_password" class="required">@lang('Password')</label>
+                            <input class="form-control" type="password" placeholder="@lang('Password')" name="old_password" id="old_password" required>
                         </div>
 
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">@lang('New Password')</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="password" placeholder="@lang('New Password')" name="password">
-                            </div>
+                        <div class="form-group">
+                            <label for="password" class="required">@lang('New Password')</label>
+                            <input class="form-control" type="password" placeholder="@lang('New Password')" name="password" id="password" required>
                         </div>
 
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">@lang('Confirm Password')</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="password" placeholder="@lang('Confirm Password')" name="password_confirmation">
-                            </div>
+                        <div class="form-group">
+                            <label for="password_confirmation" class="required">@lang('Confirm Password')</label>
+                            <input class="form-control" type="password" placeholder="@lang('Confirm Password')" name="password_confirmation" id="password_confirmation" required>
                         </div>
 
-
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label"></label>
-                            <div class="col-lg-9">
-                            <button type="submit" class="btn btn--primary btn-block btn-lg">@lang('Save Changes')</button>
-                            </div>
-                        </div>
+                        <button type="submit" class="btn btn--primary w-100 btn-lg h-45">@lang('Submit')</button>
                     </form>
                 </div>
             </div>

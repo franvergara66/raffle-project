@@ -100,50 +100,45 @@ function Password() {
             <div className="card-body">
               <h5 className="card-title mb-4 border-bottom pb-2">Change Password</h5>
               <form onSubmit={handleSubmit}>
-                <div className="form-group row">
-                  <label className="col-lg-3 col-form-label form-control-label">Current Password</label>
-                  <div className="col-lg-9">
-                    <input
-                      className="form-control"
-                      type="password"
-                      name="current_password"
-                      value={form.current_password}
-                      onChange={handleChange}
-                    />
-                  </div>
+                <div className="form-group">
+                  <label htmlFor="old_password" className="required">Password</label>
+                  <input
+                    className="form-control"
+                    type="password"
+                    name="current_password"
+                    id="old_password"
+                    required
+                    value={form.current_password}
+                    onChange={handleChange}
+                  />
                 </div>
-                <div className="form-group row">
-                  <label className="col-lg-3 col-form-label form-control-label">New Password</label>
-                  <div className="col-lg-9">
-                    <input
-                      className="form-control"
-                      type="password"
-                      name="password"
-                      value={form.password}
-                      onChange={handleChange}
-                    />
-                  </div>
+                <div className="form-group">
+                  <label htmlFor="password" className="required">New Password</label>
+                  <input
+                    className="form-control"
+                    type="password"
+                    name="password"
+                    id="password"
+                    required
+                    value={form.password}
+                    onChange={handleChange}
+                  />
                 </div>
-                <div className="form-group row">
-                  <label className="col-lg-3 col-form-label form-control-label">Confirm Password</label>
-                  <div className="col-lg-9">
-                    <input
-                      className="form-control"
-                      type="password"
-                      name="password_confirmation"
-                      value={form.password_confirmation}
-                      onChange={handleChange}
-                    />
-                  </div>
+                <div className="form-group">
+                  <label htmlFor="password_confirmation" className="required">Confirm Password</label>
+                  <input
+                    className="form-control"
+                    type="password"
+                    name="password_confirmation"
+                    id="password_confirmation"
+                    required
+                    value={form.password_confirmation}
+                    onChange={handleChange}
+                  />
                 </div>
-                <div className="form-group row">
-                  <label className="col-lg-3 col-form-label form-control-label"></label>
-                  <div className="col-lg-9">
-                    <button type="submit" className="btn btn--primary btn-block btn-lg">
-                      Save Changes
-                    </button>
-                  </div>
-                </div>
+                <button type="submit" className="btn btn--primary w-100 btn-lg h-45">
+                  Submit
+                </button>
               </form>
             </div>
           </div>
