@@ -18,6 +18,14 @@ const Admin = {
     return rows[0];
   },
 
+  findByIdWithPassword: async (id) => {
+    const [rows] = await db.query(
+      "SELECT id, name, email, username, image, role, password, created_at, updated_at FROM admins WHERE id = ?",
+      [id]
+    );
+    return rows[0];
+  },
+
   findByEmail: async (email) => {
     const [rows] = await db.query("SELECT * FROM admins WHERE email = ?", [email]);
     return rows;
