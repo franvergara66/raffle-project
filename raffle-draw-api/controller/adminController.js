@@ -131,7 +131,7 @@ exports.changePassword = async (req, res) => {
   }
 
   try {
-    const admin = await Admin.findById(req.admin.id);
+    const admin = await Admin.findByIdWithPassword(req.admin.id);
     if (!admin) {
       return res.status(404).json({ message: "Admin no encontrado" });
     }
