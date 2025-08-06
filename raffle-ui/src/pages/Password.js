@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { apiFetch } from '../utils/api';
 
@@ -60,8 +61,17 @@ function Password() {
 
   return (
     <div className="bodywrapper__inner">
+      <div className="d-flex mb-30 flex-wrap gap-3 justify-content-between align-items-center">
+        <h6 className="page-title">Password Setting</h6>
+        <div className="d-flex flex-wrap justify-content-end gap-2 align-items-center breadcrumb-plugins">
+          <Link to="/profile" className="btn btn-sm btn-outline--primary">
+            <i className="las la-user"></i>Profile Setting
+          </Link>
+        </div>
+      </div>
+
       <div className="row mb-none-30">
-        <div className="col-xl-3 col-lg-4 mb-30">
+        <div className="col-lg-3 col-md-3 mb-30">
           <div className="card b-radius--5 overflow-hidden">
             <div className="card-body p-0">
               <div className="d-flex p-3 bg--primary align-items-center">
@@ -95,7 +105,7 @@ function Password() {
             </div>
           </div>
         </div>
-        <div className="col-xl-9 col-lg-8 mb-30">
+        <div className="col-lg-9 col-md-9 mb-30">
           <div className="card">
             <div className="card-body">
               <h5 className="card-title mb-4 border-bottom pb-2">Change Password</h5>
