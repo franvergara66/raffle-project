@@ -7,6 +7,7 @@ import LotteryList from './pages/lottery/List';
 import LotteryCreate from './pages/lottery/Create';
 import LotteryEdit from './pages/lottery/Edit';
 import LotteryPhases from './pages/lottery/Phases';
+import PhasesList from './pages/lottery/PhasesList';
 import WinBonus from './pages/lottery/WinBonus';
 import Profile from './pages/Profile';
 import Password from './pages/Password';
@@ -71,6 +72,18 @@ function App() {
             isAuthenticated() ? (
               <ProtectedLayout>
                 <LotteryCreate />
+              </ProtectedLayout>
+            ) : (
+              <Navigate to="/Login" />
+            )
+          }
+        />
+        <Route
+          path="/lottery/phases"
+          element={
+            isAuthenticated() ? (
+              <ProtectedLayout>
+                <PhasesList />
               </ProtectedLayout>
             ) : (
               <Navigate to="/Login" />

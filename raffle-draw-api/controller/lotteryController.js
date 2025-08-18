@@ -39,6 +39,12 @@ exports.toggleStatus = async (req, res) => {
   res.json({ message: 'Status updated' });
 };
 
+exports.getAllPhases = async (req, res) => {
+  const { search, start, end } = req.query;
+  const phases = await Phase.findAllWithLottery({ search, start, end });
+  res.json(phases);
+};
+
 exports.getPhases = async (req, res) => {
   const phases = await Phase.findByLottery(req.params.lotteryId);
   res.json(phases);
