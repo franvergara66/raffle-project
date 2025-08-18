@@ -4,6 +4,7 @@ const authenticateToken = require('../middleware/authMiddleware');
 
 router.get('/', authenticateToken, ctrl.getAll);
 router.post('/', authenticateToken, ctrl.create);
+router.get('/phases', authenticateToken, ctrl.getAllPhases);
 router.get('/:id', authenticateToken, ctrl.getById);
 router.put('/:id', authenticateToken, ctrl.update);
 router.patch('/:id/status', authenticateToken, ctrl.toggleStatus);
